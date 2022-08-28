@@ -5,13 +5,9 @@ const {
 	loginUser,
 	updateUser,
 	checkEmail,
-<<<<<<< HEAD
-	getUserById
-=======
 	getUserById,
 	contactUser,
 	getAllContactedUsers,
->>>>>>> New-Features-and-Components
 } = require('../controller/userController');
 const { auth } = require('../middleware/auth');
 const multer = require('multer');

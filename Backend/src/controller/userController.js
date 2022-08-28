@@ -106,16 +106,6 @@ const updateUser = asyncHandler(async (req, res) => {
 	}
 });
 
-const getUserById = async (req, res) => {
-	try {
-		let { id } = req.body;
-		let user = await User.findOne({ _id: id });
-		res.json(user);
-	} catch (error) {
-		res.json(error);
-	}
-};
-
 const contactUser = async (req, res) => {
 	try {
 		const { searchedUserId, currentUserId } = req.body;
@@ -157,11 +147,7 @@ module.exports = {
 	loginUser,
 	updateUser,
 	checkEmail,
-<<<<<<< HEAD
-	getUserById
-=======
 	getUserById,
 	contactUser,
 	getAllContactedUsers,
->>>>>>> New-Features-and-Components
 };
