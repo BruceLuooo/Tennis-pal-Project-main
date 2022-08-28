@@ -7,6 +7,7 @@ import Popup from '../components/Popup';
 function Profile() {
 
   const {user, token, addUserToLocalStorage, login} = useContext(appContext)
+	console.log(user)
 
 	const [userData, setUserData] = useState({});
 	const [updateProfile, setUpdateProfile] = useState({})
@@ -33,8 +34,10 @@ function Profile() {
       email: user.email,
       level: user.level,
       password: user.password,
-			token: token,
-			locations: user.locations
+		token: token,
+		locations: user.locations,
+		avatar: user.avatar,
+		id: user._id,
     })
   },[user.email, user.level, user.name, user.password, user.locations, token, refresh ]);
 
@@ -177,9 +180,40 @@ function Profile() {
 		}
 	}
 
+	const changeAvatar = (e) => {
+		const config = {
+			headers: {
+				'Content-Type': 'multipart/form-data',
+				'Authorization': `${userData.id}`
+			},
+		}
+
+		let data = new FormData();
+		let imagedata = document.querySelector('input[type="file"]').files[0];
+		data.append("avatar", imagedata);
+		axios
+			.post('http://localhost:5000/api/users/uploadPfp', data, config)
+			.then(({ data }) => {
+				setUserData({
+					name: user.name,
+					email: user.email,
+					level: user.level,
+					password: user.password,
+					token: token,
+					locations: user.locations,
+					avatar: data.url,
+					id: user._id,
+				})
+			})
+	}
+
 	if (!user.isAdmin) {
 		return (
 			<div className='page-containers'>
+
+				<img style={{ width: '50px', height: '50px' }} src={userData.avatar} alt="avatar"/>
+
+
 				<div className='profile-container-one'>
 					<div>
 						{/* <img src="" alt="profile picture" /> */}
@@ -252,8 +286,9 @@ function Profile() {
 		<div className='page-containers'>
 			<div className='profile-container-one'>
 				<div>
-					{/* <img src="" alt="profile picture" /> */}
-					<input type="file" />
+					<img style={{ width: '50px', height: '50px', background: 'red' }} src={userData.avatar} alt="avatar"/>
+
+					<input type="file" onChange={(e) => changeAvatar(e)} />
 				</div>
 				<div className='profile-info-container'>
 					<div className='profile-info'>

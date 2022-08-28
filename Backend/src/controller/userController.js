@@ -75,6 +75,7 @@ const loginUser = asyncHandler(async (req, res) => {
 				password: user.password,
 				location: user.locations,
 				isAdmin: user.isAdmin,
+				avatar: user.avatar,
 			},
 			token: generateToken(user._id),
 		});
@@ -85,7 +86,7 @@ const loginUser = asyncHandler(async (req, res) => {
 
 const updateUser = asyncHandler(async (req, res) => {
 	try {
-		const { email, name, password, level, locations } = req.body;
+		const { email, name, password, level, locations, avatar } = req.body;
 
 		if (await User.findOne({ email })) {
 			res.status(401).json({ Message: 'Email already exists' });
@@ -155,13 +156,15 @@ const uploadPfp = async (req, res) => {
 	});
 
 	try {
+		const id = req.headers.authorization;
 		let { path } = req.file;
 		const result = await cloudinary.uploader.upload(path);
-		console.log(result);
+		await User.findByIdAndUpdate(id, { avatar: result.url });
+		return res.json({ url: result.url });
 	} catch (error) {
 		console.error(error);
+		return res.json({ url: 'err' });
 	}
-	res.json({ message: 'uploaded' });
 }
 
 
