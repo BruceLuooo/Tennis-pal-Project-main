@@ -29,11 +29,8 @@ function App() {
 						<Route path='/profile' element={<Profile />} />
 					</Route>
 					<Route path='/messages' element={<PrivateRoute />}>
-<<<<<<< HEAD
 						<Route path='/messages/:id' element={<Messages />} />
-=======
 						<Route path='/messages:id' element={<Messages />} />
->>>>>>> New-Features-and-Components
 						<Route path='/messages' element={<Messages />} />
 					</Route>
 					<Route path='/courts' element={<Courts />} />

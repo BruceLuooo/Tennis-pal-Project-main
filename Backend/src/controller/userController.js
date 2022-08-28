@@ -2,7 +2,12 @@ const asyncHandler = require('express-async-handler');
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 
+const cloudinary = require('cloudinary').v2;
 const User = require('../models/userModel');
+
+// cloudinary.config({
+// 	secure: true
+// });
 
 const checkEmail = asyncHandler(async (req, res) => {
 	const { email } = req.body;
@@ -142,6 +147,24 @@ const getUserById = async (req, res) => {
 	res.json( user );
 }
 
+const uploadPfp = async (req, res) => {
+	cloudinary.config({
+		cloud_name: 'dimp3ergn',
+		api_key: '335414171851891',
+		api_secret: '_tC_ubHuwW2ewu-YMsNUKDHQUqY'
+	});
+
+	try {
+		let { path } = req.file;
+		const result = await cloudinary.uploader.upload(path);
+		console.log(result);
+	} catch (error) {
+		console.error(error);
+	}
+	res.json({ message: 'uploaded' });
+}
+
+
 module.exports = {
 	registerUser,
 	loginUser,
@@ -150,4 +173,5 @@ module.exports = {
 	getUserById,
 	contactUser,
 	getAllContactedUsers,
+	uploadPfp
 };

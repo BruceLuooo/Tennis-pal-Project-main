@@ -1,65 +1,61 @@
 import {useContext, useState} from 'react'
-import {useNavigate} from 'react-router-dom'
 import AppContext from '../context/appContext'
-<<<<<<< HEAD
 import logo from '../assets/images/tennis-logo.jpeg'
 import {useNavigate, useParams} from "react-router-dom";
 import axios from "axios";
 
 function MessageUsers({allContacts, changeChat}) {
     const navigate = useNavigate();
-    const { id } = useParams();
-  const {user} = useContext(AppContext)
-  const [currentSelected, setCurrentSelected ] = useState(undefined)
-=======
+    const {id} = useParams();
+    const {user} = useContext(AppContext)
+    const [currentSelected, setCurrentSelected] = useState(undefined)
 
-function MessageUsers({allContacts}) {
-  const navigate = useNavigate()
-  const [currentSelected, setCurrentSelected ] = useState(0)
+    function MessageUsers({allContacts}) {
+        const navigate = useNavigate()
+        const [currentSelected, setCurrentSelected] = useState(0)
 
->>>>>>> New-Features-and-Components
+        useEffect(() => {
 
-useEffect(() => {
-
-    axios.post('http://localhost:5000/api/users/getUserById', { id }).then(({ data }) => {
-        changeChat(data);
-    })
-}, [id])//
+            axios.post('http://localhost:5000/api/users/getUserById', {id}).then(({data}) => {
+                changeChat(data);
+            })
+        }, [id])//
 
 
-  const changeCurrentChat = (contact, index) => {
-    navigate(`/messages/${contact._id}`)
-    setCurrentSelected(index)
-  }
+        const changeCurrentChat = (contact, index) => {
+            navigate(`/messages/${contact._id}`)
+            setCurrentSelected(index)
+        }
 
-  return (
-    <div className='messageUsers-container'>
-      <div className='message-logo'>
-        <div className="message-font">Chat</div>
-      </div>
-      <div className='contacts'>
-        {allContacts.map((contact, index) => {
-          return (
-            <div 
-            key={contact._id}
-            className={`contact ${index === currentSelected? 'selected' : ''}`}
-            onClick={() => navigate(`/messages/${contact._id}`)}
-            >
-              <div>
-                <img src="" alt="" />
-              </div>
-              <div>
-                <h3>{contact.name}</h3>
-              </div>
+        return (
+            <div className='messageUsers-container'>
+                <div className='message-logo'>
+                    <div className="message-font">Chat</div>
+                </div>
+                <div className='contacts'>
+                    {allContacts.map((contact, index) => {
+                        return (
+                            <div
+                                key={contact._id}
+                                className={`contact ${index === currentSelected ? 'selected' : ''}`}
+                                onClick={() => navigate(`/messages/${contact._id}`)}
+                            >
+                                <div>
+                                    <img src="" alt=""/>
+                                </div>
+                                <div>
+                                    <h3>{contact.name}</h3>
+                                </div>
+                            </div>
+                        )
+                    })}
+                </div>
             </div>
-          )
-        })}
-      </div>
-    </div>
-  )
+        )
+    }
 }
 
-export default MessageUsers
+    export default MessageUsers;
 
 
 /*
