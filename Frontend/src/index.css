@@ -1,0 +1,886 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Arvo', serif;
+}
+
+body {
+  background-color: #3d3d3d;
+}
+
+
+h1 {
+  font-size: 50px;
+  color: white;
+}
+
+h2 {
+  font-size: 80px;
+  color: white;
+}
+
+h3 {
+  font-size: 18px;
+  line-height: 1.8rem;
+  font-weight: 200;
+  color: white;
+}
+
+.page-containers {
+  padding: 56px 0 0 90px;
+  background-color: #3d3d3d;
+  width: 100vw;
+}
+
+.homepage {
+  display: flex;
+  padding: 2rem;
+  background-color: #3d3d3d;
+}
+
+.homepage-text {
+  display:flex;
+  flex-direction: column;
+  width: 50%;
+}
+
+.search-block {
+  margin-top: 3.5rem;
+}
+
+.find-partner-button {
+  border: none;
+  font-size: medium;
+  width: 10rem; 
+  height:3rem;
+  cursor: pointer;
+  background-color: rgba(27, 196, 27, 0.531);
+  color: white  ;
+  transition: 0.3s;
+}
+.find-partner-button:hover {
+  background-color: rgba(0, 255, 0, 0.531);
+}
+
+.tennis-players {
+  max-width: 100%;
+  height: auto;
+}
+
+.container-test {
+  position: fixed;
+  left: 0;
+  top: 56px;
+  height: 100%;
+  z-index: 100;
+}
+
+.navbar-vertical > div {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 16px;
+  width: 100%;
+  border-bottom: 1.5px solid #aaaaaa;
+  border-right: 1.5px solid #aaaaaa;
+  color: #aaaaaa;
+  transition: 0.3s;
+}
+
+.navbar-vertical > div:hover {
+  cursor: pointer;
+  color: white;
+}
+
+.navbar-horizontal {
+  display: flex;
+  position: fixed;
+  top: 0;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid #aaaaaa;
+  padding: 0 16px;
+  height: 56px;
+  width: 100%;
+  z-index: 100;
+  background-color: #181818;
+}
+
+.navigation-horizontal {
+  display: flex;
+  gap: 10px;
+  margin: 1rem;
+  color: #aaaaaa;
+  transition: 0.3s;
+}
+
+.navigation-horizontal > li {
+  transition: 0.3s;
+}
+
+.navigation-horizontal > li:hover {
+  cursor: pointer;
+  color: white;
+}
+
+.start {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  cursor: pointer;
+}
+
+.logo {
+  height: 68px;
+  padding: 8px;
+  border-radius: 50%;
+}
+
+.vertical-logo {
+  height: 30px;
+  padding-bottom: 0.2rem;
+}
+
+.font {
+  font-weight: 700;
+  font-size: 2rem;
+  color: white;
+}
+
+li {
+  list-style: none;
+}
+
+.login-container {
+  border: 2px solid #aaaaaa;
+  max-width: 32rem;
+  margin: auto;
+  margin-top: 5rem;
+  padding: 2rem;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  color: white;
+  background-color: #695b5b;
+
+}
+
+.login-form {
+  display: flex;
+  flex-direction: column;
+  margin-top: 1.5rem;
+  width: 100%;
+}
+
+.login-form > input {
+  margin-bottom: 1rem;
+  height: 2rem;
+}
+
+.login {
+  padding: 0.5rem 1.5rem;
+  background-color:rgba(63, 252, 63, 0.531);
+  max-width: 10rem;
+  color: white;
+  opacity: 0.8;
+  transition: 0.3s;
+  border: none;
+}
+
+.login:hover {
+  cursor: pointer;
+  opacity: 1;
+}
+
+.no-account {
+  padding: 0.5rem 1.5rem;
+  border: none;
+  background-color: white;
+  background-color:rgba(63, 252, 63, 0.531);
+  color: white;
+  opacity: 0.8;
+  transition: 0.3s;
+}
+
+.no-account:hover {
+  cursor: pointer;
+  opacity: 1;
+}
+
+.end-of-form {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1.5rem;
+  margin-top: 2.5rem;
+  margin-bottom: 1rem;
+}
+
+.profile-container {
+  display: flex;
+  gap: 4rem;
+  max-width: 70rem;
+  margin: auto;
+  margin-top: 5rem;
+  padding: 2rem;
+  border: 1px solid #aaaaaa;
+}
+
+.profile-info-container {
+  display: flex;
+  flex-direction: column;
+  min-width: 30rem;
+  gap: 0.8rem;
+}
+
+.profile-info {
+  display: flex;
+  justify-content: space-between;
+  max-width: 20rem;
+}
+
+.profile-info > input {
+  margin-bottom: 1rem;
+  height: 1.5rem;
+  min-width: 15rem;
+}
+
+.profile-container-one {
+  display: flex;
+  max-width: 70rem;
+  margin: auto;
+  margin-top: 5rem;
+  padding: 2rem;
+  border: 1px solid #aaaaaa;
+}
+
+.select-locations {
+  background-color: #aaaaaa;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 1rem;
+  max-width: 18rem;
+  gap: 1rem;
+  border: 1px solid white;
+}
+
+.chosen-locations {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  padding: 0.5rem 0 0.5rem 0.5rem;
+  max-height: 8rem;
+  overflow-y: scroll;
+  border: 1px solid white;
+}
+
+.add-new-court-button {
+  max-width: 8rem;
+  min-height: 2rem;
+  border: none;
+  background-color:rgba(63, 252, 63, 0.531);
+  color: white;
+  cursor: pointer;
+}
+
+.profiles-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2rem;
+  margin: 2rem 0;
+}
+
+.popup-box-container {
+  position: fixed;
+  left: 0px;
+  top: 0px;
+  margin: 56px 0 0 90px;
+  width: 100%;
+  height: 100%;
+}
+
+.popup-box {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  width: 75%;
+  min-height: 40rem;
+  background-color: #aaaaaa;
+  margin: 50px auto;
+  padding: 20px;
+  gap: 2rem;
+}
+
+.addCourt-container {
+  display: flex;
+  flex-direction: column;
+  border: 1px solid white;
+  max-width: 40rem;
+  max-height: 20rem;
+  overflow-y: scroll;
+  gap: 1rem;
+  padding: 1rem;
+}
+
+.deleteCourt-container {
+  display: flex;
+  flex-direction: column;
+  border: 1px solid white;
+  /* min-width: 30rem; */
+  max-width: 80rem;
+  max-height: 20rem;
+  overflow-y: scroll;
+  gap: 1rem;
+  padding: 1rem;
+}
+
+.delete-court-list {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  min-width: 26rem;
+  background-color: #aaaaaa;
+  border: 1px solid white;
+  padding: 1rem;
+}
+.delete-user-list {
+  display: flex;
+  justify-content: space-between;
+  width: 50rem;
+  align-items: center;
+  background-color: #aaaaaa;
+  border: 1px solid white;
+  padding: 1rem;
+}
+
+.delete-user-button-container {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  align-items: center;
+  padding: 1rem;
+}
+
+.delete-button {
+  min-width: 8rem;
+  border: none;
+  background-color: red;
+  padding: 0.5rem;
+  cursor: pointer;
+  color: white;
+}
+
+.not {
+  background-color: green;
+}
+
+.delete {
+  padding: 0.5rem 1.5rem;
+  background-color:red;
+  max-width: 10rem;
+  color: white;
+  cursor: pointer;
+  border: none;
+}
+
+.all-courts-update {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  max-height: 35rem;
+  overflow-y: scroll;
+}
+
+.btn-container{
+  display: flex;
+  gap: 4rem;
+}
+
+.btn-close {
+  cursor: pointer;
+  width: 5rem;
+  height: 2.5rem;
+  border: 1px solid #999;
+  background-color: green;
+  color: white;
+}
+
+
+
+.page-containers1 {
+  display: flex;
+  padding: 56px 0 0 104px;
+}
+
+.profile-card {
+  display: flex;
+  min-height: 12rem;
+  min-width: 24rem;
+  background-color: white;
+}
+
+.profile-card div {
+  margin: 1rem;
+}
+
+.select-courts-container {
+  display: flex;
+  flex-direction: column;
+  margin: 2rem;
+  padding: 1.5rem;
+  min-width: 35rem;
+  gap: 1rem;
+  background-color: #695b5b;
+  border: 1px solid black ;
+}
+
+.all-courts {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  gap: 1rem;
+  padding-top: 5rem;
+  max-height: 35rem;
+}
+
+.court-name {
+  display: flex;
+  gap: 0.5rem;
+  color: white;
+}
+
+.all-locations {
+  font-size: 1.1rem ;
+}
+
+.court-name-checkbox {
+  width: 2rem;
+}
+
+.filter-container {
+  display: flex;
+  flex-direction: column;
+  margin-top: 2rem;
+  min-width: 18rem;
+  max-height: 34rem;
+  border: 1px solid black;
+  padding: 3rem 1rem;
+  gap: 1rem;
+  background-color: white;
+}
+
+.level-filters {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.different-filters {
+  max-height: 15rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  overflow-y: scroll;
+}
+
+.filter {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.searchPlayer-container{
+  display: flex;
+  flex-direction: column;
+  max-width: 60rem;
+  padding: 2rem 2rem;
+}
+
+/* .total-players-red {
+  font-size: 20px;
+  color: red;
+}
+.total-players-green {
+  font-size: 20px;
+  color: rgb(1, 157, 1);
+} */
+
+.searchcourts-container {
+  max-width: 70rem;
+  margin: auto;
+  padding: 2rem;
+  display: flex;
+  flex-direction: column;
+}
+
+.searchbar {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.searchbar > input {
+  height: 1.8rem;
+  max-width: 20rem;
+  
+}
+
+.courts-container {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  margin: 2rem 0;
+}
+
+.court-card {
+  display: flex;
+  max-width: 50rem;
+  background-color: #aaaaaa;
+}
+
+.court-data {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  margin: 1rem;
+  width: 50%;
+}
+
+.court-info {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.court-info-picture {
+  height: 25px;
+}
+
+.court-image {
+  position: relative;
+  overflow: hidden;
+  width: 100%;
+  padding-top: 56.25%;
+}
+
+.iframe {
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  height: 100%;
+  width: 100%;
+}
+
+.page-btn-container {
+  display: flex;
+  max-width: auto;
+}
+
+.blank {
+  opacity: 0;
+  pointer-events: none;
+}
+
+.pageBtn {
+  font-size: 16px;
+  border: none;
+  padding: 10px 20px;
+  cursor: pointer;
+  transition: 0.3s;
+  max-width: 5rem;
+}
+
+.pageBtn:hover {
+  opacity: 80%;
+}
+
+.pageBtn-active {
+  background-color: rgb(24, 204, 24);
+  font-size: 16px;
+  border: none;
+  padding: 10px 20px;
+  max-width: 5rem;
+}
+
+.messages-container {
+  height: 85vh;
+  width: 85vw;
+  min-width: 70vw;
+  background-color: white;
+  margin: auto;
+  display: grid;
+  grid-template-columns: 25% 75%;
+}
+
+.noChat-selected {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #aaaaaa ;
+}
+
+.messageUsers-container {
+  display: grid;
+  grid-template-rows: 10% 75% ;
+  background-color: #181818;
+}
+
+.message-logo {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 5px;
+
+}
+
+.message-font {
+  font-weight: 700;
+  font-size: 2rem;
+  color: white;
+}
+
+.contacts {
+  display: flex;
+  flex-direction: column;
+  max-height: 200rem;
+  overflow-y: scroll;
+  align-items: center;
+  gap: 0.8rem;
+  max-width: 100%;
+}
+
+.contact {
+  background-color: #ffffff34;
+  min-height: 5rem;
+  cursor: pointer;
+  width: 90%;
+  padding: 0.4rem;
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+  transition: 0.5s;
+}
+
+.selected {
+  background-color: #9a86f3;
+}
+
+.chat-container {
+  display: grid;
+  grid-template-rows: 10% 80% 10%;
+  gap: 0.1rem;
+  overflow: hidden;
+  background-color: #aaaaaa ;
+}
+
+.chat-header {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  background-color: #442d2d3a;
+}
+
+
+
+.input-container {
+  width: 100%;
+  height: 75%;
+  border-radius: 2rem;
+  padding: 0 1rem;
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+  background-color: #ffffff34;
+}
+
+.chat-message-input {
+  width: 90%;
+  background-color: transparent;
+  color: black;
+  border: none;
+  padding-left: 1rem;
+  font-size: 1.2rem;
+}
+
+.chat-message-submit {
+  padding: 0.5rem 1rem;
+  border-radius: 2rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: none;
+  cursor: pointer;
+}
+
+.chat-messages {
+  padding: 1rem 2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  overflow: auto;
+}
+
+.message > .content {
+  display: flex;
+  align-items: center;
+  max-width: 40%;
+  overflow-wrap: break-word;
+  padding: 1rem;
+  font-size: 1.1rem;
+  border-radius: 1rem;
+  color: #695b5b;
+}
+
+.message.sent {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  
+}
+
+.message.sent > .content {
+  background-color: white;
+}
+
+.message.received {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+}
+
+.message.received > .content {
+  background-color: #9a86f3;
+}
+
+
+@media screen and (min-width: 320px) and (max-width: 768px) {
+  
+  .homepage {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    
+  }
+
+  .homepage-text {
+    display:flex;
+    flex-direction: column;
+    width: 100%;
+  }
+    
+  h1 {
+    font-size: 46px;
+    color: white;
+  }
+
+  h2 {
+    font-size: 80px;
+    color: white;
+  }
+  
+  h3 {
+    font-size: 16px;
+    line-height: 1.8rem;
+    font-weight: 200;
+    color: white;
+  }
+
+  .search-block{
+    display: flex;
+    justify-content: center;
+  }
+
+  .court-card {
+    max-width: 40rem;
+  }
+
+  .court-image{
+    padding-top: 75%;
+  }
+
+  .tennis-players {
+    max-width: 100%;
+    height: auto;
+  }
+
+  .font {
+    font-size: 1.5rem;
+  }
+
+  .message-font{
+    font-size: 1.2rem;
+  }
+
+  .pageBtn {
+    font-size: 16px;
+    padding: 7px 14px;
+  }
+
+  .pageBtn-active {
+    background-color: rgb(24, 204, 24);
+    font-size: 16px;
+    padding: 7px 14px;
+  }
+
+  .all-courts {
+    max-height: 80rem;
+  }
+
+  .popup-box{
+    margin: 50px 50px;
+  }
+
+  .profile-container {
+    flex-direction: column;
+  }
+
+  .profile-container-one {
+    flex-direction: column;
+  }
+
+  .all-courts-update {
+    max-height: 30rem;
+  }
+
+} 
+
+@media screen and (min-width: 768px) and (max-width: 1283px) {
+  .homepage {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  .homepage-text{
+    width: 80%;
+  }
+
+  .tennis-players {
+    max-width: 80%;
+    height: auto;
+  }
+
+  .all-courts {
+    max-height: 50rem;
+  }
+
+  
+  .select-courts-container {
+    min-width: 55rem;
+  }
+
+  .profile-container {
+    flex-direction: column;
+  }
+
+  .profile-container-one {
+    flex-direction: column;
+  }
+
+
+}
