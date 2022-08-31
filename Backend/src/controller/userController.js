@@ -5,10 +5,6 @@ const jwt = require('jsonwebtoken');
 const cloudinary = require('cloudinary').v2;
 const User = require('../models/userModel');
 
-// cloudinary.config({
-// 	secure: true
-// });
-
 const checkEmail = asyncHandler(async (req, res) => {
 	const { email } = req.body;
 
@@ -46,6 +42,8 @@ const registerUser = asyncHandler(async (req, res, next) => {
 				password: user.password,
 				locations: user.locations,
 				isAdmin: false,
+				avatar:
+					'https://cdn.discordapp.com/attachments/1007742096104497163/1013499279681277952/unknown.png',
 			},
 			token: generateToken(user._id),
 		});
@@ -86,7 +84,7 @@ const loginUser = asyncHandler(async (req, res) => {
 
 const updateUser = asyncHandler(async (req, res) => {
 	try {
-		const { email, name, password, level, locations, avatar } = req.body;
+		const { email, name, password, level, locations } = req.body;
 
 		if (await User.findOne({ email })) {
 			res.status(401).json({ Message: 'Email already exists' });
@@ -141,18 +139,17 @@ const generateToken = id => {
 	return jwt.sign({ id }, process.env.JWT_SECRET, { expiresIn: '30d' });
 };
 
-
 const getUserById = async (req, res) => {
 	let { id } = req.body;
 	let user = await User.findOne({ _id: id });
-	res.json( user );
-}
+	res.json(user);
+};
 
 const uploadPfp = async (req, res) => {
 	cloudinary.config({
-		cloud_name: 'dimp3ergn',
-		api_key: '335414171851891',
-		api_secret: '_tC_ubHuwW2ewu-YMsNUKDHQUqY'
+		cloud_name: process.env.CLOUD_NAME,
+		api_key: process.env.CLOUDINARY_API_KEY,
+		api_secret: process.env.CLOUDINARY_SECRET,
 	});
 
 	try {
@@ -165,8 +162,7 @@ const uploadPfp = async (req, res) => {
 		console.error(error);
 		return res.json({ url: 'err' });
 	}
-}
-
+};
 
 module.exports = {
 	registerUser,
@@ -176,5 +172,5 @@ module.exports = {
 	getUserById,
 	contactUser,
 	getAllContactedUsers,
-	uploadPfp
+	uploadPfp,
 };

@@ -116,11 +116,15 @@ h3 {
   transition: 0.3s;
 }
 
-.navigation-horizontal > li {
+.navigation-horizontal > button {
   transition: 0.3s;
+  border: none;
+  background-color: #181818;
+  color: #aaaaaa;
+  font-size: 16px;
 }
 
-.navigation-horizontal > li:hover {
+.navigation-horizontal > button:hover {
   cursor: pointer;
   color: white;
 }
@@ -223,7 +227,7 @@ li {
   gap: 4rem;
   max-width: 70rem;
   margin: auto;
-  margin-top: 5rem;
+  margin-top: 3rem;
   padding: 2rem;
   border: 1px solid #aaaaaa;
 }
@@ -239,6 +243,7 @@ li {
   display: flex;
   justify-content: space-between;
   max-width: 20rem;
+  color: white;
 }
 
 .profile-info > input {
@@ -251,9 +256,21 @@ li {
   display: flex;
   max-width: 70rem;
   margin: auto;
-  margin-top: 5rem;
+  margin-top: 5rem ;
   padding: 2rem;
   border: 1px solid #aaaaaa;
+}
+
+.profile-image {
+  width: 175px;
+  height: 175px;
+  border-radius: 50%;
+}
+
+.profile-image-delete {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
 }
 
 .select-locations {
@@ -290,7 +307,7 @@ li {
   display: flex;
   flex-wrap: wrap;
   gap: 2rem;
-  margin: 2rem 0;
+  margin-bottom: 2rem ;
 }
 
 .popup-box-container {
@@ -307,7 +324,7 @@ li {
   flex-direction: column;
   position: relative;
   width: 75%;
-  min-height: 40rem;
+  max-height: 50rem;
   background-color: #aaaaaa;
   margin: 50px auto;
   padding: 20px;
@@ -329,7 +346,6 @@ li {
   display: flex;
   flex-direction: column;
   border: 1px solid white;
-  /* min-width: 30rem; */
   max-width: 80rem;
   max-height: 20rem;
   overflow-y: scroll;
@@ -341,7 +357,7 @@ li {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  min-width: 26rem;
+  min-width: 30rem;
   background-color: #aaaaaa;
   border: 1px solid white;
   padding: 1rem;
@@ -349,11 +365,18 @@ li {
 .delete-user-list {
   display: flex;
   justify-content: space-between;
-  width: 50rem;
+  max-width: 50rem;
+  min-width: 30rem;
   align-items: center;
   background-color: #aaaaaa;
   border: 1px solid white;
   padding: 1rem;
+}
+
+.delete-user-info {
+  display: flex;
+  gap: 1rem;
+  align-items: center;
 }
 
 .delete-user-button-container {
@@ -417,9 +440,10 @@ li {
 
 .profile-card {
   display: flex;
+  align-items: center;
   min-height: 12rem;
-  min-width: 24rem;
-  background-color: white;
+  padding: 1rem;
+  background-color: #aaaaaa;
 }
 
 .profile-card div {
@@ -495,18 +519,9 @@ li {
 .searchPlayer-container{
   display: flex;
   flex-direction: column;
-  max-width: 60rem;
+  /* max-width: 60rem; */
   padding: 2rem 2rem;
 }
-
-/* .total-players-red {
-  font-size: 20px;
-  color: red;
-}
-.total-players-green {
-  font-size: 20px;
-  color: rgb(1, 157, 1);
-} */
 
 .searchcourts-container {
   max-width: 70rem;
@@ -544,7 +559,8 @@ li {
 .court-data {
   display: flex;
   flex-direction: column;
-  justify-content: space-evenly;
+  justify-content: center;
+  gap: 1rem;
   margin: 1rem;
   width: 50%;
 }
@@ -552,8 +568,9 @@ li {
 .court-info {
   display: flex;
   align-items: center;
-  gap: 0.5rem;
+  gap: 1rem;
 }
+
 
 .court-info-picture {
   height: 25px;
@@ -666,13 +683,19 @@ li {
   transition: 0.5s;
 }
 
+.messanger-profile-pictures {
+  height: 50px;
+  width: 50px;
+  border-radius: 50%;
+}
+
 .selected {
   background-color: #9a86f3;
 }
 
 .chat-container {
   display: grid;
-  grid-template-rows: 10% 80% 10%;
+  grid-template-rows: 12% 76% 12%;
   gap: 0.1rem;
   overflow: hidden;
   background-color: #aaaaaa ;
@@ -681,11 +704,10 @@ li {
 .chat-header {
   display: flex;
   align-items: center;
+  padding: 0 1rem;
   gap: 1rem;
   background-color: #442d2d3a;
 }
-
-
 
 .input-container {
   width: 100%;
@@ -757,9 +779,81 @@ li {
   background-color: #9a86f3;
 }
 
+.navbar-toggle {
+  display: none;
+}
+
+.combine-nav {
+  display: none;
+}
+
 
 @media screen and (min-width: 320px) and (max-width: 768px) {
+
+  .navbar-vertical {
+    display: none;
+  }
   
+  .navbar-toggle {
+    display: flex;
+    color: white;
+    padding: 0 2rem;
+    cursor: pointer;
+  }
+
+  .combine-nav {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .navbar-horizontal{
+    padding: 0;
+    width: 100vw;
+  }
+
+  .navigation-horizontal {
+    display: none;
+  }
+
+  .navigation-horizontal.open{
+    display: contents;
+    position: absolute;
+    top: 3.5rem;
+    padding-top: 2rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 1rem;
+    width: 100%;
+    height: 100vh;
+    background-color: black;
+    margin: 0;
+  }
+
+  .navigation-horizontal.open > button {
+    font-size: 30px;
+    background-color: black;
+  }
+
+  .page-containers {
+    padding: 0;
+    padding-top: 56px ;
+  }
+  .page-containers1 {
+    flex-direction: column;
+    padding: 0;
+    padding-top: 56px ;
+  }
+
+  .filter-container{
+    padding: 2rem 2rem;
+  }
+  
+  .different-filters {
+    max-height: 10rem;
+  }
+
   .homepage {
     display: flex;
     flex-direction: column;
@@ -816,6 +910,11 @@ li {
     font-size: 1.2rem;
   }
 
+  .page-btn-container {
+    flex-wrap: wrap;
+    row-gap: 0.2rem;
+  }
+
   .pageBtn {
     font-size: 16px;
     padding: 7px 14px;
@@ -835,18 +934,97 @@ li {
     margin: 50px 50px;
   }
 
+  .profile-info-container {
+    min-width: 0;
+  }
+
   .profile-container {
     flex-direction: column;
+    margin: 1rem 1rem;
+    max-width: 34rem;
   }
 
   .profile-container-one {
     flex-direction: column;
+    margin: 1rem 1rem;
+    gap: 3rem;
+    max-width: 34rem;
+  }
+
+  .headline {
+    font-size: 32px;
+  }
+
+  .profile-image {
+    width: 100px;
+    height: 100px;
+  }
+
+  .profile-info {
+    flex-direction: column;
+  }
+
+  .profile-info > input {
+    max-width: 15rem;
   }
 
   .all-courts-update {
     max-height: 30rem;
   }
 
+  .profile-card > .profile-image {
+    width: 100px;
+    height: 100px;
+  }
+
+  .popup-box-container {
+    margin: 0;
+  }
+
+  .court-name-checkbox {
+    width: 20px;
+  }
+  
+  .deleteCourt-container {
+    max-width: 20rem;
+  }
+
+  .delete-court-list {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.5rem;
+    min-width: 0;
+  }
+
+  .delete-user-list {
+    flex-direction: column;
+    align-items: flex-start;
+    max-width: 20rem;
+    min-width: 0;
+    padding: 0.5rem;
+  }
+
+  .profile-image-delete {
+    width: 50px;
+    height: 50px;
+  }
+  
+  .messages-container {
+    grid-template-columns: none;
+    grid-template-rows: 25% 75%;
+    margin-top: 2rem;
+    gap: 1rem;
+    background-color: #3d3d3d;
+  }
+
+  .messageUsers-container {
+    padding: 0.5rem ;
+    gap: 1rem;
+  }
+
+  .messanger-profile-pictures {
+
+  }
 } 
 
 @media screen and (min-width: 768px) and (max-width: 1283px) {
@@ -868,7 +1046,6 @@ li {
   .all-courts {
     max-height: 50rem;
   }
-
   
   .select-courts-container {
     min-width: 55rem;
@@ -876,11 +1053,18 @@ li {
 
   .profile-container {
     flex-direction: column;
+    margin: 1rem 3rem;
   }
 
   .profile-container-one {
     flex-direction: column;
+    margin: 1rem 3rem;
+    gap: 3rem;
   }
 
+  .profile-card > .profile-image {
+    width: 100px;
+    height: 100px;
+  }
 
 }

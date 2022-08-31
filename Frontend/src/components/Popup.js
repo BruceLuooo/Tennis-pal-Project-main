@@ -6,12 +6,14 @@ function Popup({ checkbox, courts, update, removeAll }) {
 		<div className='popup-box-container'>
 			<div class='popup-box'>
 				<div className='header'>
-					<h1>Select courts you want other people to find you at!</h1>
+					<h1 className='headline'>
+						Select courts you want other people to find you at!
+					</h1>
 				</div>
 				<div className='all-courts-update'>
-					{courts.map(court => {
+					{courts.map((court, index) => {
 						return (
-							<div className='court-name'>
+							<div key={index} className='court-name'>
 								<input
 									type='checkbox'
 									className='court-name-checkbox'
