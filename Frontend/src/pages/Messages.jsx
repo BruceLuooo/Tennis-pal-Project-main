@@ -2,8 +2,8 @@ import { useEffect, useState, useContext, useRef } from 'react';
 import { useParams } from 'react-router-dom';
 import AppContext from '../context/appContext';
 import axios from 'axios';
-import MessageUsers from '../components/MessageUsers';
-import ChatContainer from '../components/ChatContainer';
+import MessageUsers from '../components/messanger/MessageUsers';
+import ChatContainer from '../components/messanger/ChatContainer';
 import { io } from 'socket.io-client';
 
 function Messages() {

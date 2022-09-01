@@ -66,10 +66,9 @@ const makeAdmin = asyncHandler(async (req, res) => {
 		const user = await User.findOne({ _id });
 
 		if (user) {
-			console.log(user);
 			user.isAdmin = true;
 			await user.save();
-			res.status(201).json(user);
+			res.status(201).json(user.isAdmin);
 		}
 	} catch (error) {
 		res.status(400).json({ Message: 'Could not add Admin' });
@@ -83,7 +82,6 @@ const deleteAdmin = asyncHandler(async (req, res) => {
 		const user = await User.findOne({ _id });
 
 		if (user) {
-			console.log(user);
 			user.isAdmin = false;
 			await user.save();
 			res.status(201).json(user);

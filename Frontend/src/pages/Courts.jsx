@@ -1,8 +1,11 @@
 import { useState, useEffect } from 'react';
 import axios from 'axios';
 import CourtLists from '../components/CourtLists';
+import ScrollPageButtons from '../components/buttons/ScrollPageButtons';
 
 function Courts() {
+	const LOCALHOST_URL = 'http://localhost:5000';
+
 	const [loading, setLoading] = useState(true);
 	const [courts, setCourts] = useState([]);
 	const [numOfPages, setNumOfPages] = useState(1);
@@ -14,7 +17,7 @@ function Courts() {
 			try {
 				setCurrentPage(1);
 				const { data } = await axios.get(
-					`http://localhost:5000/api/allCourts?search=${search}`,
+					`${LOCALHOST_URL}/api/allCourts?search=${search}`,
 				);
 				setCourts(data.courts);
 				setNumOfPages(data.numOfPages);
@@ -30,7 +33,7 @@ function Courts() {
 		const courtData = async () => {
 			try {
 				const { data } = await axios.get(
-					`http://localhost:5000/api/allCourts?&page=${currentPage}&search=${search}`,
+					`${LOCALHOST_URL}/api/allCourts?&page=${currentPage}&search=${search}`,
 				);
 				setCourts(data.courts);
 			} catch (error) {
@@ -42,30 +45,6 @@ function Courts() {
 
 	const onChange = e => {
 		setSearch(e.target.value);
-	};
-
-	const totalPages = Array.from({ length: numOfPages }, (_, index) => {
-		return index + 1;
-	});
-
-	const nextPage = () => {
-		let newPage = currentPage + 1;
-
-		if (newPage > numOfPages) {
-			setCurrentPage(1);
-		} else {
-			setCurrentPage(currentPage + 1);
-		}
-	};
-
-	const prevPage = () => {
-		let newPage = currentPage - 1;
-
-		if (newPage < 1) {
-			setCurrentPage(numOfPages);
-		} else {
-			setCurrentPage(currentPage - 1);
-		}
 	};
 
 	if (loading) {
@@ -88,27 +67,11 @@ function Courts() {
 						<CourtLists key={court._id} court={court} />
 					))}
 				</div>
-				<div className={numOfPages === 0 ? 'blank' : 'page-btn-container'}>
-					<button className='pageBtn' onClick={prevPage}>
-						Prev
-					</button>
-
-					{totalPages.map(data => {
-						return (
-							<button
-								type='button'
-								className={data === currentPage ? 'pageBtn-active' : 'pageBtn'}
-								key={data}
-								onClick={() => setCurrentPage(data)}
-							>
-								{data}
-							</button>
-						);
-					})}
-					<button className='pageBtn' onClick={nextPage}>
-						Next
-					</button>
-				</div>
+				<ScrollPageButtons
+					numOfPages={numOfPages}
+					setCurrentPage={setCurrentPage}
+					currentPage={currentPage}
+				/>
 			</div>
 		</div>
 	);

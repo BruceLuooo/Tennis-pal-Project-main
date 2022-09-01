@@ -1,14 +1,15 @@
 import { useNavigate } from 'react-router-dom';
 import { useContext } from 'react';
-import AppContext from '../context/appContext';
+import AppContext from '../../context/appContext';
 import axios from 'axios';
 
 function ProfileCards({ searchedUser }) {
+	const LOCALHOST_URL = 'http://localhost:5000';
 	const navigate = useNavigate();
 	const { user } = useContext(AppContext);
 
 	const onClick = async e => {
-		await axios.post('http://localhost:5000/api/users/contactUser', {
+		await axios.post(`${LOCALHOST_URL}/api/users/contactUser`, {
 			searchedUserId: searchedUser._id,
 			currentUserId: user._id,
 		});

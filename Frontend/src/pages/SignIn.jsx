@@ -6,6 +6,8 @@ import axios from 'axios';
 import logo from '../assets/images/tennis-logo.jpeg';
 
 function SignIn() {
+	const LOCALHOST_URL = 'http://localhost:5000';
+
 	const { login, addUserToLocalStorage } = useContext(appContext);
 	const navigate = useNavigate();
 	const [btnDisabled, setBtnDisabled] = useState(false);
@@ -18,7 +20,7 @@ function SignIn() {
 		try {
 			setBtnDisabled(true);
 			const response = await axios.post(
-				'http://localhost:5000/api/users/login',
+				`${LOCALHOST_URL}/api/users/login`,
 				loginData,
 			);
 			const { token, user } = response.data;

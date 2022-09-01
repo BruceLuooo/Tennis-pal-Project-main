@@ -18,7 +18,6 @@ function NavbarH() {
 	};
 
 	const navigateToPage = e => {
-		console.log(e);
 		setIsOpen(!isOpen);
 		navigate(`${e.target.value}`);
 	};
