@@ -123,7 +123,23 @@ const contactUser = async (req, res) => {
 
 		res.status(200).json(currentUser);
 	} catch (error) {
-		res.status(400).json({ Message: 'Shit doesnt work' });
+		res.status(400).json({ Message: 'There is an error' });
+	}
+};
+const addToContactedUser = async (req, res) => {
+	try {
+		const { searchedUserId, currentUserId } = req.body;
+		const searchedUser = await User.findById(searchedUserId);
+		const currentUser = await User.findById(currentUserId);
+
+		if (searchedUser) {
+			searchedUser.usersContacted.unshift(currentUser);
+			searchedUser.save();
+		}
+
+		res.status(200).json(searchedUser);
+	} catch (error) {
+		res.status(400).json({ Message: 'There is an error' });
 	}
 };
 
@@ -171,6 +187,7 @@ module.exports = {
 	checkEmail,
 	getUserById,
 	contactUser,
+	addToContactedUser,
 	getAllContactedUsers,
 	uploadPfp,
 };

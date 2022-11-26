@@ -74,40 +74,44 @@ function FindPlayersFilter({
 
 	return (
 		<div className='filter-container'>
-			<p>Playing Level ({filter.level.length})</p>
-			<div className='level-filters'>
-				{playerLevel.map((level, index) => {
-					return (
-						<div className='filter' key={index}>
-							<input
-								className='court-name-checkbox'
-								type='checkbox'
-								id='level'
-								value={level}
-								onClick={updateLevelFilter}
-							/>
-							<p>Level {level}</p>
-						</div>
-					);
-				})}
-			</div>
-			<p>Locations ({filter.locations.length})</p>
-			<div className='different-filters'>
-				{locationsLists.map((location, index) => {
-					return (
-						<div className='filter' key={index}>
-							<input
-								className='court-name-checkbox'
-								type='checkbox'
-								id='locations'
-								value={location.name}
-								onClick={updateLocationFilter}
-							/>
-							<p>{location.name}</p>
-						</div>
-					);
-				})}
-			</div>
+			<section>
+				<p>Playing Level ({filter.level.length})</p>
+				<div className='level-filters'>
+					{playerLevel.map((level, index) => {
+						return (
+							<div className='filter' key={index}>
+								<input
+									className='court-name-checkbox'
+									type='checkbox'
+									id='level'
+									value={level}
+									onClick={updateLevelFilter}
+								/>
+								<p>Level {level}</p>
+							</div>
+						);
+					})}
+				</div>
+			</section>
+			<section>
+				<p>Locations ({filter.locations.length})</p>
+				<div className='different-filters'>
+					{locationsLists.map((location, index) => {
+						return (
+							<div className='filter' key={index}>
+								<input
+									className='court-name-checkbox'
+									type='checkbox'
+									id='locations'
+									value={location.name}
+									onClick={updateLocationFilter}
+								/>
+								<p>{location.name}</p>
+							</div>
+						);
+					})}
+				</div>
+			</section>
 		</div>
 	);
 }

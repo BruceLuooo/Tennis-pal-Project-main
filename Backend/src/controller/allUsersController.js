@@ -5,31 +5,35 @@ const User = require('../models/userModel');
 const allUsers = asyncHandler(async (req, res) => {
 	let { level, locations } = req.query;
 
-	const queryObject = {};
+	try {
+		const queryObject = {};
 
-	// find all users with a level
-	if (level && locations) {
-		(queryObject.level = level), (queryObject.locations = { $in: locations });
-	} else if (!locations && level) {
-		queryObject.level = level;
-	} else if (!level && locations) {
-		queryObject.locations = { $in: locations };
+		// find all users with a level
+		if (level && locations) {
+			(queryObject.level = level), (queryObject.locations = { $in: locations });
+		} else if (!locations && level) {
+			queryObject.level = level;
+		} else if (!level && locations) {
+			queryObject.locations = { $in: locations };
+		}
+
+		let results = User.find(queryObject);
+
+		const page = Number(req.query.page) || 1;
+		const limit = 8;
+		const skip = (page - 1) * limit;
+
+		results = results.skip(skip).limit(limit);
+
+		const allUsers = await results;
+
+		const totalUsers = await User.countDocuments(queryObject);
+		const numOfPages = Math.ceil(totalUsers / limit);
+
+		res.status(200).json({ allUsers, numOfPages });
+	} catch (error) {
+		res.status(200).json({ Message: error });
 	}
-
-	let results = User.find(queryObject);
-
-	const page = Number(req.query.page) || 1;
-	const limit = 8;
-	const skip = (page - 1) * limit;
-
-	results = results.skip(skip).limit(limit);
-
-	const allUsers = await results;
-
-	const totalUsers = await User.countDocuments(queryObject);
-	const numOfPages = Math.ceil(totalUsers / limit);
-
-	res.status(200).json({ allUsers, numOfPages });
 });
 
 const totalUsers = asyncHandler(async (req, res) => {

@@ -4,27 +4,29 @@ import axios from 'axios';
 
 function MessageUsers({ allContacts }) {
 	const navigate = useNavigate();
-	const [currentSelected, setCurrentSelected] = useState(0);
+	const [id, setId] = useState();
 
-	const changeCurrentChat = (contact, index) => {
+	const changeCurrentChat = contact => {
 		navigate(`/messages/${contact._id}`);
-		setCurrentSelected(index);
 	};
+
+	useEffect(() => {
+		const url = window.location.href;
+		const getId = url.split('/');
+		const id = getId.pop();
+		return setId(id);
+	}, [window.location.href]);
 
 	return (
 		<div className='messageUsers-container'>
-			<div className='message-logo'>
-				<div className='message-font'>Chat</div>
-			</div>
+			<span className='contacts-header'>Messanger</span>
 			<div className='contacts'>
-				{allContacts.map((contact, index) => {
+				{allContacts.map(contact => {
 					return (
 						<div
 							key={contact._id}
-							className={`contact ${
-								index === currentSelected ? 'selected' : ''
-							}`}
-							onClick={() => changeCurrentChat(contact, index)}
+							className={`contact ${contact._id === id && 'selected'}`}
+							onClick={() => changeCurrentChat(contact)}
 						>
 							<div>
 								<img

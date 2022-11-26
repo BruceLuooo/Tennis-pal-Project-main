@@ -8,7 +8,7 @@ function CourtLists({ court }) {
 
 	const joinAddress = splitAddress.join('+');
 
-	const map = `https://www.google.com/maps/embed/v1/place?key=AIzaSyCpHK58fj3BauHvy-z02ChIATenCps0Dqc
+	const map = `https://www.google.com/maps/embed/v1/place?key=${process.env.REACT_APP_MAPS}
   &q=${joinAddress}`;
 
 	return (
@@ -17,8 +17,8 @@ function CourtLists({ court }) {
 				<iframe
 					className='iframe'
 					title='maps'
-					width='600'
-					height='350'
+					width='300'
+					height='150'
 					style={{ border: 0 }}
 					loading='lazy'
 					allowFullScreen
@@ -30,15 +30,15 @@ function CourtLists({ court }) {
 			<div className='court-data'>
 				<div className='court-info'>
 					<img src={search} alt='map' className='court-info-picture' />
-					<h3>{court.name}</h3>
+					<span>{court.name}</span>
 				</div>
 				<div className='court-info'>
 					<img src={mapIcon} alt='map' className='court-info-picture' />
-					<h3>{court.address}</h3>
+					<span>{court.address}</span>
 				</div>
 				<div className='court-info'>
 					<img src={tennisCourt} alt='court' className='court-info-picture' />
-					<h3>Total Courts: {court.amountOfCourts}</h3>
+					<span>Total Courts: {court.amountOfCourts}</span>
 				</div>
 			</div>
 		</div>

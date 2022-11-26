@@ -17,7 +17,7 @@ function UserProfile() {
 		setSelectedLocations,
 	} = useContext(UserProfileContext);
 
-	const { addUserToLocalStorage, login } = useContext(AppContext);
+	const { addUserToSessionStorage, login } = useContext(AppContext);
 
 	const updateUser = async (userData, updateProfile) => {
 		if (!userData.email || !userData.name || !userData.level) {
@@ -40,7 +40,7 @@ function UserProfile() {
 			);
 			const { user, token } = response.data;
 
-			addUserToLocalStorage({ user, token });
+			addUserToSessionStorage({ user, token });
 			login({ user, token });
 			setUpdateProfile({});
 			setSelectedLocations([]);
@@ -73,37 +73,47 @@ function UserProfile() {
 	};
 
 	return (
-		<div className='profile-container-one'>
+		<main className='profile-container-one'>
 			<div>
-				<h3>Profile Picture</h3>
-				<img className='profile-image' src={userData.avatar} alt='avatar' />
+				<img
+					className='profile-image-main'
+					src={userData.avatar}
+					alt='avatar'
+				/>
 				<input type='file' onChange={e => changeAvatar(e)} />
 			</div>
-			<div className='profile-info-container'>
+			<section className='profile-info-container'>
 				<div className='profile-info'>
-					<label>Name</label>
+					<label htmlFor='name'>Name</label>
 					<input
 						type='text'
 						id='name'
+						disabled={userData.name === 'Bruce' ? true : false}
 						value={userData.name}
 						onChange={onChange}
 					/>
 				</div>
 				<div className='profile-info'>
-					<label>Email</label>
+					<label htmlFor='email'>Email</label>
 					<input
 						type='email'
 						id='email'
 						value={userData.email}
 						onChange={onChange}
+						disabled={userData.email === 'test@gmail.com' ? true : false}
 					/>
 				</div>
 				<div className='profile-info'>
-					<label>Password</label>
-					<input type='text' id='password' onChange={onChange} />
+					<label htmlFor='password'>Password</label>
+					<input
+						type='text'
+						id='password'
+						disabled={true}
+						onChange={onChange}
+					/>
 				</div>
 				<div className='profile-info'>
-					<label>Level</label>
+					<label htmlFor='level'>Level</label>
 					<input
 						type='number'
 						id='level'
@@ -119,10 +129,10 @@ function UserProfile() {
 				>
 					Save Changes
 				</button>
-			</div>
-			<div className='select-locations'>
+			</section>
+			<section className='select-locations'>
 				<button className='login' onClick={togglePopup}>
-					Select Locations
+					Update Locations
 				</button>
 				<div className='chosen-locations'>
 					{selectedLocations.map((location, index) => {
@@ -130,8 +140,8 @@ function UserProfile() {
 					})}
 				</div>
 				<div>Save Changes to update</div>
-			</div>
-		</div>
+			</section>
+		</main>
 	);
 }
 

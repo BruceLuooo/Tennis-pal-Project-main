@@ -51,18 +51,9 @@ function Profile() {
 		refresh,
 	]);
 
-	if (!user.isAdmin) {
-		return (
-			<div className='page-containers'>
-				<UserProfile />;
-			</div>
-		);
-	}
-
 	return (
-		<div className='page-containers'>
+		<main className='page-containers'>
 			<UserProfile />
-
 			{popup && (
 				<Popup
 					removeAll={removeSelectedLocations}
@@ -71,13 +62,17 @@ function Profile() {
 					update={updateLocations}
 				/>
 			)}
-			<AddOrDeleteCourts courts={courts} setRefresh={setRefresh} />
-			<UsersMakeAdminOrDelete
-				getAllUsers={getAllUsers}
-				user={user}
-				setRefresh={setRefresh}
-			/>
-		</div>
+			{user.isAdmin && (
+				<section className='admin-layout'>
+					<AddOrDeleteCourts courts={courts} setRefresh={setRefresh} />
+					<UsersMakeAdminOrDelete
+						getAllUsers={getAllUsers}
+						user={user}
+						setRefresh={setRefresh}
+					/>
+				</section>
+			)}
+		</main>
 	);
 }
 

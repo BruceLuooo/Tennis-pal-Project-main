@@ -33,6 +33,7 @@ const getMessages = async (req, res, next) => {
 			return {
 				fromSelf: msg.sender.toString() === from,
 				message: msg.message.text,
+				date: msg.createdAt,
 			};
 		});
 		res.json(projectedMessages);

@@ -6,7 +6,6 @@ import { UserProfileProvider } from './context/userProfileContext';
 import Home from './pages/Home';
 import NavbarH from './components/NavbarH';
 import NavbarV from './components/NavbarV';
-import Rules from './pages/Rules';
 import Courts from './pages/Courts';
 import SignIn from './pages/SignIn';
 import SignUp from './pages/SignUp';
@@ -36,7 +35,6 @@ function App() {
 							<Route path='/messages' element={<Messages />} />
 						</Route>
 						<Route path='/courts' element={<Courts />} />
-						<Route path='/rules' element={<Rules />} />
 						<Route path='/sign-in' element={<SignIn />} />
 						<Route path='/sign-up' element={<SignUp />} />
 					</Routes>

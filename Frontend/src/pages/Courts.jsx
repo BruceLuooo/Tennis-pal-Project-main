@@ -48,32 +48,32 @@ function Courts() {
 	};
 
 	if (loading) {
-		<div className='page-containers'>
+		<main className='page-containers'>
 			<div className='searchbar'>
 				<input type='text' />
 			</div>
 			<div className='all-courts-container'>loading...</div>
-		</div>;
+		</main>;
 	}
 	return (
-		<div className='page-containers'>
+		<main className='page-containers'>
 			<div className='searchcourts-container'>
-				<div className='searchbar'>
+				<section className='searchbar'>
 					<h3> Search Courts : </h3>
 					<input type='text' value={search} onChange={onChange} />
-				</div>
-				<div className='courts-container'>
+				</section>
+				<section className='courts-container'>
 					{courts.map(court => (
 						<CourtLists key={court._id} court={court} />
 					))}
-				</div>
+				</section>
 				<ScrollPageButtons
 					numOfPages={numOfPages}
 					setCurrentPage={setCurrentPage}
 					currentPage={currentPage}
 				/>
 			</div>
-		</div>
+		</main>
 	);
 }
 

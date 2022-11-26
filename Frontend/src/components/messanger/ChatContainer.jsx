@@ -1,6 +1,7 @@
 import { useState, useEffect, useRef } from 'react';
 import axios from 'axios';
 import { v4 as uuidv4 } from 'uuid';
+import sendMessage from '../../assets/images/send-message.png';
 
 function ChatContainer({ currentChat, currentUser, mostRecentChat, socket }) {
 	const [message, setMessage] = useState('');
@@ -26,6 +27,7 @@ function ChatContainer({ currentChat, currentUser, mostRecentChat, socket }) {
 			to: currentChat._id,
 			message: msg,
 		});
+
 		socket.current.emit('send-msg', {
 			to: currentChat._id,
 			from: currentUser._id,
@@ -65,7 +67,7 @@ function ChatContainer({ currentChat, currentUser, mostRecentChat, socket }) {
 	if (!currentChat) {
 		return (
 			<div className='noChat-selected'>
-				<h1>select a chat to start messaging</h1>
+				<h1 className='idk'>select a chat to start messaging</h1>
 			</div>
 		);
 	}
@@ -78,9 +80,8 @@ function ChatContainer({ currentChat, currentUser, mostRecentChat, socket }) {
 					src={currentChat.avatar}
 					alt=''
 				/>
-				<div className='message-font'>{currentChat.name}</div>
+				<span className='chat-header-label'>{currentChat.name}</span>
 			</div>
-
 			<div className='chat-messages'>
 				{chatLog.map(message => {
 					return (
@@ -89,25 +90,25 @@ function ChatContainer({ currentChat, currentUser, mostRecentChat, socket }) {
 								className={`message ${message.fromSelf ? 'sent' : 'received'}`}
 							>
 								<div className='content'>
-									<p>{message.message}</p>
+									<span>{message.message}</span>
 								</div>
+								<span>{message.date}</span>
 							</div>
 						</div>
 					);
 				})}
 			</div>
-
 			<div>
 				<form className='input-container' onSubmit={onSubmit}>
 					<input
 						className='chat-message-input'
 						type='text'
-						placeholder='type your message here'
+						placeholder='Type a Message'
 						onChange={e => setMessage(e.target.value)}
 						value={message}
 					/>
 					<button className='chat-message-submit' type='submit'>
-						send
+						<img src={sendMessage} alt='sendMessage' />
 					</button>
 				</form>
 			</div>

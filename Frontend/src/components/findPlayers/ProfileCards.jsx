@@ -13,20 +13,29 @@ function ProfileCards({ searchedUser }) {
 			searchedUserId: searchedUser._id,
 			currentUserId: user._id,
 		});
+		await axios.post(`${LOCALHOST_URL}/api/users/addToContactedUser`, {
+			searchedUserId: searchedUser._id,
+			currentUserId: user._id,
+		});
 		navigate(`/messages/${searchedUser._id}`);
 	};
 
 	return (
-		<div className='profile-card'>
-			<img className='profile-image' src={searchedUser.avatar} alt='' />
-			<div className='court-data'>
-				<h3>Name: {searchedUser.name}</h3>
-				<h3>Level: {searchedUser.level}</h3>
-				<button className='login' onClick={onClick}>
-					send a message
-				</button>
-			</div>
-		</div>
+		<main>
+			<section className='profile-card'>
+				<div>
+					<img className='profile-image' src={searchedUser.avatar} alt='' />
+					<span>{searchedUser.name}</span>
+				</div>
+				<div>
+					<span>Player Level: {searchedUser.level}</span>
+					<button className='send-message' onClick={onClick}>
+						Send Message
+					</button>
+				</div>
+			</section>
+			<hr className='line' />
+		</main>
 	);
 }
 

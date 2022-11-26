@@ -1,3 +1,10 @@
+:root {
+  --color-one: #d6ccc2;
+  --color-two: #edede9;
+  --color-three: #f5ebe0;
+
+}
+
 * {
   margin: 0;
   padding: 0;
@@ -6,43 +13,48 @@
 }
 
 body {
-  background-color: #3d3d3d;
+  background-color: white;
 }
 
 
 h1 {
   font-size: 50px;
-  color: white;
+  color: black;
 }
 
 h2 {
   font-size: 80px;
-  color: white;
+  color: black;
 }
 
 h3 {
   font-size: 18px;
   line-height: 1.8rem;
   font-weight: 200;
-  color: white;
+  color: black;
 }
 
 .page-containers {
   padding: 56px 0 0 90px;
-  background-color: #3d3d3d;
   width: 100vw;
 }
 
 .homepage {
   display: flex;
   padding: 2rem;
-  background-color: #3d3d3d;
+  height: 92vh;
 }
 
 .homepage-text {
   display:flex;
   flex-direction: column;
+  align-items: center;
+  padding: 2rem;
   width: 50%;
+  height: 25rem;
+  border-radius: 6px;
+  margin: 0 auto;
+  background-color: rgba(255, 255, 255, 0.85);
 }
 
 .search-block {
@@ -50,13 +62,13 @@ h3 {
 }
 
 .find-partner-button {
-  border: none;
   font-size: medium;
   width: 10rem; 
   height:3rem;
   cursor: pointer;
-  background-color: rgba(27, 196, 27, 0.531);
-  color: white  ;
+  background-color: var(--color-one);
+  border-radius: 6px;
+  color: black  ;
   transition: 0.3s;
 }
 .find-partner-button:hover {
@@ -72,7 +84,7 @@ h3 {
   position: fixed;
   left: 0;
   top: 56px;
-  height: 100%;
+  height: 80%;
   z-index: 100;
 }
 
@@ -85,13 +97,13 @@ h3 {
   width: 100%;
   border-bottom: 1.5px solid #aaaaaa;
   border-right: 1.5px solid #aaaaaa;
-  color: #aaaaaa;
+  background-color: rgba(255, 255, 255, 0.8);
+  color: black;
   transition: 0.3s;
 }
 
 .navbar-vertical > div:hover {
   cursor: pointer;
-  color: white;
 }
 
 .navbar-horizontal {
@@ -100,7 +112,6 @@ h3 {
   top: 0;
   justify-content: space-between;
   align-items: center;
-  border-bottom: 1px solid #aaaaaa;
   padding: 0 16px;
   height: 56px;
   width: 100%;
@@ -110,9 +121,9 @@ h3 {
 
 .navigation-horizontal {
   display: flex;
-  gap: 10px;
+  gap: 20px;
   margin: 1rem;
-  color: #aaaaaa;
+  color: var(--color-two);
   transition: 0.3s;
 }
 
@@ -120,13 +131,9 @@ h3 {
   transition: 0.3s;
   border: none;
   background-color: #181818;
-  color: #aaaaaa;
+  color: var(--color-two);
   font-size: 16px;
-}
-
-.navigation-horizontal > button:hover {
   cursor: pointer;
-  color: white;
 }
 
 .start {
@@ -150,7 +157,7 @@ h3 {
 .font {
   font-weight: 700;
   font-size: 2rem;
-  color: white;
+  color: var(--color-two);
 }
 
 li {
@@ -159,17 +166,19 @@ li {
 
 .login-container {
   border: 2px solid #aaaaaa;
-  max-width: 32rem;
+  border-radius: 6px;
+  max-width: 40rem;
   margin: auto;
   margin-top: 5rem;
   padding: 2rem;
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  color: white;
-  background-color: #695b5b;
+  color: black;
+  background-color: var(--color-two);
 
 }
+
 
 .login-form {
   display: flex;
@@ -185,25 +194,24 @@ li {
 
 .login {
   padding: 0.5rem 1.5rem;
-  background-color:rgba(63, 252, 63, 0.531);
-  max-width: 10rem;
-  color: white;
-  opacity: 0.8;
+  background-color: var(--color-one);
+  max-width: 11rem;
+  border-radius: 8px;
+  color: black;
   transition: 0.3s;
-  border: none;
+  border: 1px solid black;
 }
-
 .login:hover {
   cursor: pointer;
-  opacity: 1;
 }
 
 .no-account {
   padding: 0.5rem 1.5rem;
-  border: none;
+  border: 1px solid black;
+  border-radius: 6px;
   background-color: white;
-  background-color:rgba(63, 252, 63, 0.531);
-  color: white;
+  background-color:var(--color-one);
+  color: black;
   opacity: 0.8;
   transition: 0.3s;
 }
@@ -229,7 +237,8 @@ li {
   margin: auto;
   margin-top: 3rem;
   padding: 2rem;
-  border: 1px solid #aaaaaa;
+  border: 2px solid #d6ccc2;
+  border-radius: 6px;
 }
 
 .profile-info-container {
@@ -241,14 +250,15 @@ li {
 
 .profile-info {
   display: flex;
+  align-items: center;
   justify-content: space-between;
   max-width: 20rem;
-  color: white;
+  color: black;
 }
 
 .profile-info > input {
-  margin-bottom: 1rem;
   height: 1.5rem;
+  padding-left: 5px;
   min-width: 15rem;
 }
 
@@ -256,15 +266,27 @@ li {
   display: flex;
   max-width: 70rem;
   margin: auto;
-  margin-top: 5rem ;
+  margin-top: 3rem ;
   padding: 2rem;
-  border: 1px solid #aaaaaa;
+  border: 2px solid #d6ccc2;
+  min-height: 25rem;
+  border-radius: 6px;
+  align-items: center;
 }
 
-.profile-image {
-  width: 175px;
-  height: 175px;
+.profile-image{
+  width: 75px;
+  height: 75px;
+  border: 1px solid black;
   border-radius: 50%;
+}
+
+.profile-image-main {
+  width: 150px;
+  height: 150px;
+  border: 1px solid black;
+  border-radius: 50%;
+  margin-bottom: 1rem;
 }
 
 .profile-image-delete {
@@ -274,14 +296,16 @@ li {
 }
 
 .select-locations {
-  background-color: #aaaaaa;
+  background-color: var(--color-one);
   display: flex;
   flex-direction: column;
   align-items: center;
   padding: 1rem;
   max-width: 18rem;
+  width: 100%;
   gap: 1rem;
-  border: 1px solid white;
+  border: 1px solid black;
+  border-radius: 6px;
 }
 
 .chosen-locations {
@@ -291,23 +315,31 @@ li {
   padding: 0.5rem 0 0.5rem 0.5rem;
   max-height: 8rem;
   overflow-y: scroll;
+  width: 16rem;
   border: 1px solid white;
 }
+
+
 
 .add-new-court-button {
   max-width: 8rem;
   min-height: 2rem;
-  border: none;
-  background-color:rgba(63, 252, 63, 0.531);
-  color: white;
+  border: 1px solid black;
+  border-radius: 6px;
+  background-color: var(--color-one) ;
+  color: black;
   cursor: pointer;
 }
 
 .profiles-container {
   display: flex;
-  flex-wrap: wrap;
-  gap: 2rem;
-  margin-bottom: 2rem ;
+  flex-direction: column;
+  width: 100%;
+  margin-bottom: 0.5rem;
+  border: 2px solid #d6ccc2;
+  border-radius: 6px;
+  padding: 1.5rem 0;
+  min-height: 50rem;
 }
 
 .popup-box-container {
@@ -327,7 +359,7 @@ li {
   position: relative;
   width: 75%;
   max-height: 40rem;
-  background-color: #aaaaaa;
+  background-color: #eeedf3;
   margin: 50px auto;
   padding: 20px;
   gap: 2rem;
@@ -359,9 +391,10 @@ li {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  min-width: 30rem;
-  background-color: #aaaaaa;
-  border: 1px solid white;
+  min-width: 28rem;
+  background-color: var(--color-one);
+  border: 1px solid black;
+  border-radius: 6px;
   padding: 1rem;
 }
 .delete-user-list {
@@ -370,8 +403,9 @@ li {
   max-width: 50rem;
   min-width: 30rem;
   align-items: center;
-  background-color: #aaaaaa;
-  border: 1px solid white;
+  background-color: var(--color-one);
+  border: 1px solid black;
+  border-radius: 6px;
   padding: 1rem;
 }
 
@@ -391,7 +425,8 @@ li {
 
 .delete-button {
   min-width: 8rem;
-  border: none;
+  border: 1px solid black;
+  border-radius: 6px;
   background-color: red;
   padding: 0.5rem;
   cursor: pointer;
@@ -404,11 +439,12 @@ li {
 
 .delete {
   padding: 0.5rem 1.5rem;
-  background-color:red;
+  background-color:rgb(228, 15, 15);
   max-width: 10rem;
   color: white;
   cursor: pointer;
-  border: none;
+  border: 1px solid black;
+  border-radius: 6px;
 }
 
 .all-courts-update {
@@ -430,10 +466,8 @@ li {
   height: 2.5rem;
   border: 1px solid #999;
   background-color: green;
-  color: white;
+  color: black;
 }
-
-
 
 .page-containers1 {
   display: flex;
@@ -443,23 +477,53 @@ li {
 .profile-card {
   display: flex;
   align-items: center;
-  min-height: 12rem;
-  padding: 1rem;
-  background-color: #aaaaaa;
+  gap: 5rem;
+  padding: 1rem 3rem;
+  max-width: 100%;
+  height: 6rem;
+  border-radius: 6px;
+}
+.profile-card div:nth-child(1) {
+  display: flex;
+  align-items: center;
+  max-width: 20rem;
+  width: 100%;
+  gap: 2rem;
+}
+.profile-card div:nth-child(2) {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  justify-content: space-around;
+  gap: 2rem;
+}
+.line {
+  opacity: 50%;
 }
 
-.profile-card div {
-  margin: 1rem;
+
+.send-message{
+  border-radius: 6px;
+  height: 2rem;
+  width: 8rem;
+  background-color: #d6ccc2;
+  transition: 0.3s;
 }
+.send-message:hover {
+  cursor: pointer;
+  background-color: #f5ebe0;
+}
+
 
 .select-courts-container {
   display: flex;
   flex-direction: column;
-  margin: 2rem;
   padding: 1.5rem;
-  min-width: 35rem;
+  max-width: 65rem;
+  width: 100%;
+  margin: auto;
   gap: 1rem;
-  background-color: #695b5b;
+  background-color: var(--color-two);
   border: 1px solid black ;
 }
 
@@ -468,48 +532,56 @@ li {
   flex-direction: column;
   flex-wrap: wrap;
   gap: 1rem;
-  padding-top: 5rem;
   max-height: 35rem;
 }
 
 .court-name {
   display: flex;
   gap: 0.5rem;
-  color: white;
-}
-
-.all-locations {
-  font-size: 1.1rem ;
+  color: black;
 }
 
 .court-name-checkbox {
-  width: 2rem;
+  width: 18px;
+  height: 18px;
 }
 
 .filter-container {
   display: flex;
   flex-direction: column;
+  position: sticky;
+  top: 90px;
   margin-top: 2rem;
   min-width: 18rem;
-  max-height: 34rem;
-  border: 1px solid black;
+  max-height: 38rem;
+  border: 2px solid #d6ccc2;
+  border-radius: 6px;
   padding: 3rem 1rem;
   gap: 1rem;
-  background-color: white;
+  background-color: var(--color-three);
 }
+
+.filter-container span {
+  font-size: 24px;
+  text-decoration: underline;
+  text-underline-offset: 5px;
+}
+
 
 .level-filters {
   display: flex;
   flex-direction: column;
-  gap: 0.5rem;
+  gap: 0.8rem;
+  margin-top: 1rem;
 }
 
 .different-filters {
   max-height: 15rem;
   display: flex;
   flex-direction: column;
-  gap: 0.5rem;
+  gap: 0.8rem;
   overflow-y: scroll;
+  margin-top: 1rem;
 }
 
 .filter {
@@ -521,8 +593,9 @@ li {
 .searchPlayer-container{
   display: flex;
   flex-direction: column;
-  /* max-width: 60rem; */
   padding: 2rem 2rem;
+  max-width: 1350px;
+  width: 100%;
 }
 
 .searchcourts-container {
@@ -555,7 +628,9 @@ li {
 .court-card {
   display: flex;
   max-width: 50rem;
-  background-color: #aaaaaa;
+  border-radius: 6px;
+  background-color: var(--color-three);
+  border: 2px solid #d6ccc2;
 }
 
 .court-data {
@@ -612,6 +687,7 @@ li {
   cursor: pointer;
   transition: 0.3s;
   max-width: 5rem;
+  background-color: var(--color-two);
 }
 
 .pageBtn:hover {
@@ -619,7 +695,7 @@ li {
 }
 
 .pageBtn-active {
-  background-color: rgb(24, 204, 24);
+  background-color: #d6ccc2;
   font-size: 16px;
   border: none;
   padding: 10px 20px;
@@ -627,54 +703,55 @@ li {
 }
 
 .messages-container {
-  height: 85vh;
   width: 85vw;
-  min-width: 70vw;
-  background-color: white;
   margin: auto;
+  background-color: white;
   display: grid;
   grid-template-columns: 25% 75%;
+  border: 2px solid grey;
+  border-radius: 6px;
+  margin-top: 2rem;
 }
 
 .noChat-selected {
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: #aaaaaa ;
+  background-color: white ;
 }
 
 .messageUsers-container {
   display: grid;
   grid-template-rows: 10% 75% ;
-  background-color: #181818;
+  border-right: 2px solid grey;
+  /* background-color: var(--color-three); */
+  height: 86vh;
 }
 
-.message-logo {
+.contacts-header {
   display: flex;
-  justify-content: center;
   align-items: center;
+  padding-left: 1rem;
   gap: 5px;
-
-}
-
-.message-font {
   font-weight: 700;
-  font-size: 2rem;
-  color: white;
+  font-size: 32px;
+  color: black;
+  border-bottom: 2px solid grey;
 }
 
 .contacts {
   display: flex;
   flex-direction: column;
+  padding-top: 1rem;
   max-height: 200rem;
   overflow-y: scroll;
   align-items: center;
-  gap: 0.8rem;
   max-width: 100%;
+  /* background-color: var(--color-three); */
 }
 
 .contact {
-  background-color: #ffffff34;
+  background-color:white;
   min-height: 5rem;
   cursor: pointer;
   width: 90%;
@@ -684,31 +761,37 @@ li {
   align-items: center;
   transition: 0.5s;
 }
-
+.selected {
+  background-color: var(--color-one);
+  border-radius: 6px;
+}
 .messanger-profile-pictures {
   height: 50px;
   width: 50px;
   border-radius: 50%;
 }
 
-.selected {
-  background-color: #9a86f3;
-}
-
 .chat-container {
   display: grid;
-  grid-template-rows: 12% 76% 12%;
+  grid-template-rows: 10% 80% 10%;
   gap: 0.1rem;
-  overflow: hidden;
-  background-color: #aaaaaa ;
+  /* overflow: hidden;
+  max-height: 86vh; */
 }
 
 .chat-header {
   display: flex;
   align-items: center;
   padding: 0 1rem;
-  gap: 1rem;
-  background-color: #442d2d3a;
+  gap: 1.5rem;
+  height: 100%;
+  background-color: var(--color-one);
+  border-bottom: 2px solid grey;
+}
+
+.chat-header-label {
+  font-size: 28px;
+  font-weight: 600;
 }
 
 .input-container {
@@ -719,7 +802,7 @@ li {
   display: flex;
   align-items: center;
   gap: 2rem;
-  background-color: #ffffff34;
+  border: 2px solid var(--color-two);
 }
 
 .chat-message-input {
@@ -732,21 +815,23 @@ li {
 }
 
 .chat-message-submit {
-  padding: 0.5rem 1rem;
-  border-radius: 2rem;
+  padding: 0.5rem;
+  border-radius: 50%;
   display: flex;
   justify-content: center;
   align-items: center;
   border: none;
   cursor: pointer;
+  background-color: var(--color-one);
 }
 
 .chat-messages {
-  padding: 1rem 2rem;
+  margin-top: 2rem;
+  padding: 0 2rem;
   display: flex;
   flex-direction: column;
   gap: 1rem;
-  overflow: auto;
+  overflow-y: auto;
 }
 
 .message > .content {
@@ -768,7 +853,7 @@ li {
 }
 
 .message.sent > .content {
-  background-color: white;
+  background-color: var(--color-one);
 }
 
 .message.received {
@@ -778,7 +863,7 @@ li {
 }
 
 .message.received > .content {
-  background-color: #9a86f3;
+  background-color: var(--color-three);
 }
 
 .navbar-toggle {
@@ -790,6 +875,77 @@ li {
 }
 
 
+
+
+@media screen and (min-width: 768px) and (max-width: 1283px) {
+  .homepage {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  .homepage-text{
+    width: 80%;
+  }
+
+  .tennis-players {
+    max-width: 80%;
+    height: auto;
+  }
+
+  .all-courts {
+    max-height: 50rem;
+  }
+  
+  .select-courts-container {
+    max-width: 55rem;
+    width: 100%;
+  }
+
+  .profile-container {
+    flex-direction: column;
+    margin: 1rem 3rem;
+  }
+
+  .profile-container-one {
+    flex-direction: column;
+    margin: 3rem 3rem;
+    gap: 3rem;
+  }
+
+
+  .page-containers1 {
+    flex-direction: column;
+    padding: 0;
+    padding-top: 56px ;
+    margin-left: 100px;
+  }
+
+  .filter-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    position: unset;
+    padding: 2rem 2rem;
+    margin: 2rem 2rem;
+    gap: 3rem;
+    background-color: #edede9;
+  }
+
+  .profile-image {
+    width: 70px;
+    height: 70px;
+  }
+  .profile-card {
+    gap: 2rem;
+  }
+
+  .contacts-header {
+    font-size: 22px;
+  }
+
+}
+
 @media screen and (min-width: 320px) and (max-width: 768px) {
 
   .navbar-vertical {
@@ -798,7 +954,7 @@ li {
   
   .navbar-toggle {
     display: flex;
-    color: white;
+    color: black;
     padding: 0 2rem;
     cursor: pointer;
   }
@@ -849,7 +1005,12 @@ li {
   }
 
   .filter-container{
+    display: flex;
+    flex-direction: column;
+    position: unset;
+    gap: 2rem;
     padding: 2rem 2rem;
+    margin: 1rem 1rem;
   }
   
   .different-filters {
@@ -859,31 +1020,32 @@ li {
   .homepage {
     display: flex;
     flex-direction: column;
+    justify-content: center;
     gap: 1rem;
     
   }
 
   .homepage-text {
-    display:flex;
-    flex-direction: column;
     width: 100%;
+    justify-content: center;
+    align-items: center;
   }
     
   h1 {
-    font-size: 46px;
-    color: white;
+    font-size: 30px;
+    color: black;
   }
 
   h2 {
-    font-size: 80px;
-    color: white;
+    font-size: 45px;
+    color: black;
   }
   
   h3 {
     font-size: 16px;
     line-height: 1.8rem;
     font-weight: 200;
-    color: white;
+    color: black;
   }
 
   .search-block{
@@ -923,7 +1085,6 @@ li {
   }
 
   .pageBtn-active {
-    background-color: rgb(24, 204, 24);
     font-size: 16px;
     padding: 7px 14px;
   }
@@ -936,14 +1097,12 @@ li {
     margin: 50px 50px;
   }
 
-  .profile-info-container {
-    min-width: 0;
-  }
 
   .profile-container {
     flex-direction: column;
     margin: 1rem 1rem;
     max-width: 34rem;
+    padding: 1rem;
   }
 
   .profile-container-one {
@@ -954,29 +1113,35 @@ li {
   }
 
   .headline {
-    font-size: 32px;
+    font-size: 30px;
+    max-width: 20rem;
   }
-
-  .profile-image {
-    width: 100px;
-    height: 100px;
-  }
-
-  .profile-info {
-    flex-direction: column;
-  }
-
-  .profile-info > input {
-    max-width: 15rem;
-  }
-
   .all-courts-update {
     max-height: 30rem;
   }
 
-  .profile-card > .profile-image {
-    width: 100px;
-    height: 100px;
+  .searchPlayer-container{
+    padding: 1rem;
+  }
+
+  .profile-card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+    height: 8rem;
+    padding: 1rem 1rem;
+    max-width: 100%;
+  }
+  .profile-card div:nth-child(1) {
+    gap: 1rem;
+  }
+  .profile-image {
+    width: 50px;
+    height: 50px;
+  }
+  .profile-info-container {
+    min-width: 20rem;
   }
 
   .popup-box-container {
@@ -988,7 +1153,8 @@ li {
   }
   
   .deleteCourt-container {
-    max-width: 20rem;
+    max-width: 21rem;
+    width: 100%;
   }
 
   .delete-court-list {
@@ -1001,72 +1167,65 @@ li {
   .delete-user-list {
     flex-direction: column;
     align-items: flex-start;
-    max-width: 20rem;
     min-width: 0;
     padding: 0.5rem;
+    gap: 1rem;
   }
 
   .profile-image-delete {
     width: 50px;
     height: 50px;
   }
+
+  .contacts-header {
+    padding: 1.5rem;
+  }
   
   .messages-container {
     grid-template-columns: none;
-    grid-template-rows: 25% 75%;
+    grid-template-rows: 30% 70%;
     margin-top: 2rem;
-    gap: 1rem;
-    background-color: #3d3d3d;
+    padding-bottom: 1rem;
+    gap: 1.5rem;
+    height: 46rem;
   }
 
   .messageUsers-container {
     padding: 0.5rem ;
+    border-right: none;
     gap: 1rem;
+    height: unset;
   }
 
-  .messanger-profile-pictures {
-
+  .chat-message-submit > img {
+    width: 1rem;
   }
-} 
 
-@media screen and (min-width: 768px) and (max-width: 1283px) {
-  .homepage {
+  .chat-header {
+    height: 4.5rem;
+  }
+
+  .delete-user-button-container {
     display: flex;
-    flex-direction: column;
-    gap: 1rem;
-  }
-
-  .homepage-text{
-    width: 80%;
-  }
-
-  .tennis-players {
-    max-width: 80%;
-    height: auto;
+    flex-direction: row;
+    gap: 0.5rem;
+    padding: unset;
   }
 
   .all-courts {
-    max-height: 50rem;
-  }
-  
-  .select-courts-container {
-    min-width: 55rem;
-  }
-
-  .profile-container {
-    flex-direction: column;
-    margin: 1rem 3rem;
+    flex-wrap: nowrap;
+    max-height: 40rem;
+    overflow: scroll;
+    width: 20rem;
   }
 
-  .profile-container-one {
-    flex-direction: column;
-    margin: 4rem 7rem;
-    gap: 3rem;
+  .contacts-header {
+    border-bottom: none;
   }
 
-  .profile-card > .profile-image {
-    width: 100px;
-    height: 100px;
+  .searchcourts-container {
+    padding: 1rem;
   }
 
-}
+} 
+

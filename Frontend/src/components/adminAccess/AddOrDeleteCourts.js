@@ -1,9 +1,12 @@
-import { useState } from 'react';
+import { useState, useContext } from 'react';
 import { toast } from 'react-toastify';
 import deleteCourts from '../../api/isAdmin/deleteCourts';
 import addCourts from '../../api/isAdmin/addCourts';
+import appContext from '../../context/appContext';
 
 function AddOrDeleteCourts({ courts, setRefresh }) {
+	const { user, token } = useContext(appContext);
+
 	const [newCourt, setNewCourt] = useState({
 		name: '',
 		address: '',
@@ -40,8 +43,8 @@ function AddOrDeleteCourts({ courts, setRefresh }) {
 	};
 
 	return (
-		<div className='profile-container'>
-			<div className='profile-info-container'>
+		<main className='profile-container'>
+			<section className='profile-info-container'>
 				<h1 className='headline'>Add a new court</h1>
 
 				<div className='profile-info'>
@@ -79,23 +82,27 @@ function AddOrDeleteCourts({ courts, setRefresh }) {
 				>
 					Add New Court
 				</button>
-			</div>
-			<div className='addCourt-container'>
+				<span>
+					{user.email === 'test@gmail.com' && 'Delete court unavilable on demo'}
+				</span>
+			</section>
+			<section className='addCourt-container'>
 				{courts.map((court, index) => {
 					return (
 						<div key={index} className='delete-court-list'>
-							<div>{court.name}</div>
+							<span>{court.name}</span>
 							<button
 								onClick={() => deleteCourt(court.name)}
 								className='delete'
+								disabled={user.email === 'test@gmail.com' ? true : false}
 							>
 								Delete
 							</button>
 						</div>
 					);
 				})}
-			</div>
-		</div>
+			</section>
+		</main>
 	);
 }
 

@@ -1,39 +1,37 @@
-import { render, screen, cleanup, fireEvent } from '@testing-library/react';
+import { render, screen, cleanup } from '@testing-library/react';
+import userEvent from '@testing-library/user-event';
 import '@testing-library/jest-dom';
-import renderer, { act } from 'react-test-renderer';
 import SignIn from '../pages/SignIn';
+import NavbarH from '../components/NavbarH';
 import AppContext from '../context/appContext';
+import { BrowserRouter as Router } from 'react-router-dom';
+import { ToastContainer } from 'react-toastify';
 
-afterEach(() => {
-	cleanup();
-});
+afterEach(() => cleanup());
 
-describe('Login Functionality', () => {
-	describe('with valid inputs', () => {
-		it('calls the onSubmit Function', async () => {
-			const mockOnSubmit = jest.fn();
-			const { getByLabelText, getByRole } = render(
-				<AppContext.Provider value={false}>
-					<SignIn onSubmit={mockOnSubmit} />,
-				</AppContext.Provider>,
-			);
+test('incorrect password results in an error', async () => {
+	render(
+		<AppContext.Provider value={false}>
+			<Router>
+				<NavbarH />
+				<SignIn />,
+			</Router>
+			<ToastContainer />
+		</AppContext.Provider>,
+	);
 
-			await act(async () => {
-				fireEvent.change(getByInputText('Email'), {
-					target: { value: 'test@gmail.com' },
-				});
-				fireEvent.change(getByLabelText('Password'), {
-					target: { value: 'test' },
-				});
-			});
+	const email = screen.getByRole('textbox', { name: 'Email' });
+	expect(email).toBeInTheDocument();
 
-			await act(async () => {
-				fireEvent.click(getByRole('button'));
-			});
+	const password = screen.getByLabelText('Password');
+	expect(password).toBeInTheDocument();
 
-			expect(mockOnSubmit).toHaveBeenCalled();
-		});
-	});
+	await userEvent.type(email, 'test@gmail.com');
+	expect(email).toHaveValue('test@gmail.com');
 
-	// test('with invalid inputs', () => {});
+	await userEvent.type(password, 'test');
+	expect(password).toHaveValue('test');
+
+	// await userEvent.click(screen.getByRole('button', { name: 'Login' }));
+	// expect(screen.findByText('Profile')).toBeInTheDocument();
 });

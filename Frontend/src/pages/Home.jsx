@@ -1,32 +1,34 @@
-import tennisPlayers from '../assets/images/tennis-players.jpeg'
-import {useNavigate} from 'react-router-dom'
+import { useNavigate } from 'react-router-dom';
+import background from '../assets/images/background.png';
 
 function Home() {
-  const navigate = useNavigate()
+	const navigate = useNavigate();
 
-  return (
-    <div className='page-containers'>
-      <div className='homepage'>
-        <div className="homepage-text"> 
-          <h1>Welcome to </h1>
-          <h2>Tennis Pal!</h2>
-          <h3>
-            This space was created in hopes of you of finding 
-            a tennis pal that will challenge you and potentially
-            be you arch rival! Check out our forum section if 
-            you're looking for any tennis related topics, and make 
-            sure to follow all our guidelines!
-          </h3>
-          <div className='search-block'>
-            <button onClick={() => navigate('/search')} className='find-partner-button'>Find A Partner!</button>
-          </div>
-        </div>
-        <div>
-          <img src={tennisPlayers} alt="tennis players" className='tennis-players'/>
-        </div>
-      </div>
-    </div>
-  );
+	return (
+		<html
+			className='page-containers'
+			style={{
+				backgroundImage: `url(${background})`,
+				backgroundSize: 'cover',
+			}}
+		>
+			<main className='homepage'>
+				<header className='homepage-text'>
+					<h1>Welcome to </h1>
+					<h2>Tennis Pal</h2>
+					<h3>Find a tennis pal in the Greater Toronto Area!</h3>
+					<div className='search-block'>
+						<button
+							onClick={() => navigate('/search')}
+							className='find-partner-button'
+						>
+							Find A Partner!
+						</button>
+					</div>
+				</header>
+			</main>
+		</html>
+	);
 }
 
 export default Home;

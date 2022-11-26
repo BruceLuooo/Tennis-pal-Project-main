@@ -9,7 +9,7 @@ function SignUp() {
 	const LOCALHOST_URL = 'http://localhost:5000';
 
 	const navigate = useNavigate();
-	const { addUserToLocalStorage, login } = useContext(appContext);
+	const { addUserToSessionStorage, login } = useContext(appContext);
 	const [btnDisabled, setBtnDisabled] = useState(false);
 	const [nextPage, setNextPage] = useState(false);
 	const [allLocations, setAllLocations] = useState([]);
@@ -93,7 +93,7 @@ function SignUp() {
 			);
 			const { user, token } = response.data;
 
-			addUserToLocalStorage({ user, token });
+			addUserToSessionStorage({ user, token });
 			login({ user, token });
 			toast.success('Account Created!');
 			navigate('/profile');

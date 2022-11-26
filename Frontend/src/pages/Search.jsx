@@ -22,27 +22,8 @@ function Search() {
 			.then(({ data }) => setLocationsList(data));
 	}, []);
 
-	if (isLoading) {
-		return (
-			<div className='page-containers1'>
-				<FindPlayersFilter
-					playerLevel={playerLevel}
-					locationsLists={locationsLists}
-					setCurrentPage={setCurrentPage}
-					currentPage={currentPage}
-					setIsLoading={setIsLoading}
-					setNumOfPages={setNumOfPages}
-					setUsers={setUsers}
-				/>
-				<div className='profiles-container'>
-					<div>Loading...</div>
-				</div>
-			</div>
-		);
-	}
-
 	return (
-		<div className='page-containers1'>
+		<main className='page-containers1'>
 			<FindPlayersFilter
 				playerLevel={playerLevel}
 				locationsLists={locationsLists}
@@ -52,26 +33,31 @@ function Search() {
 				setNumOfPages={setNumOfPages}
 				setUsers={setUsers}
 			/>
-
-			<div className='searchPlayer-container'>
+			{isLoading ? (
 				<div className='profiles-container'>
-					{users
-						.filter(current => current._id !== user._id)
-						.map((current, index) => (
-							<ProfileCards
-								key={index}
-								searchedUser={current}
-								currentUser={user}
-							/>
-						))}
+					<span>Loading...</span>
 				</div>
-				<ScrollPageButtons
-					numOfPages={numOfPages}
-					setCurrentPage={setCurrentPage}
-					currentPage={currentPage}
-				/>
-			</div>
-		</div>
+			) : (
+				<section className='searchPlayer-container'>
+					<div className='profiles-container'>
+						{users
+							.filter(current => current._id !== user._id)
+							.map((current, index) => (
+								<ProfileCards
+									key={index}
+									searchedUser={current}
+									currentUser={user}
+								/>
+							))}
+					</div>
+					<ScrollPageButtons
+						numOfPages={numOfPages}
+						setCurrentPage={setCurrentPage}
+						currentPage={currentPage}
+					/>
+				</section>
+			)}
+		</main>
 	);
 }
 

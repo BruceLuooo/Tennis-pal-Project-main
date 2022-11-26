@@ -3,16 +3,16 @@ import givetakeAdmin from '../../api/isAdmin/givetakeAdmin';
 import deleteUser from '../../api/isAdmin/deleteUser';
 
 function UsersMakeAdminOrDelete({ getAllUsers, user, setRefresh }) {
-	const deleteSelectedUser = async user => {
-		await deleteUser(user);
+	const deleteSelectedUser = async selectedUser => {
+		await deleteUser(selectedUser);
 		setRefresh('');
 		toast.success('User Deleted');
 		setRefresh([]);
 	};
 
-	const AdimRole = user => {
+	const AdimRole = selectedUser => {
 		let admin = async () => {
-			await givetakeAdmin(user);
+			await givetakeAdmin(selectedUser);
 			setRefresh('');
 			toast.success('Admin Status Changed');
 			setRefresh([]);
@@ -24,35 +24,51 @@ function UsersMakeAdminOrDelete({ getAllUsers, user, setRefresh }) {
 		<div className='profile-container'>
 			<div className='profile-info-container'>
 				<h1 className='headline'>Delete users</h1>
-				<div className='deleteCourt-container'>
+				<span>
+					{user.email === 'test@gmail.com' &&
+						'Delete user/ give admin role unavilable on demo'}
+				</span>
+				<section className='deleteCourt-container'>
 					{getAllUsers
 						.filter(currentUser => currentUser._id != user._id)
-						.map((user, index) => {
+						.map((selectedUser, index) => {
 							return (
 								<div key={index} className='delete-user-list'>
 									<div className='delete-user-info'>
 										<img
 											className='profile-image-delete'
-											src={user.avatar}
+											src={selectedUser.avatar}
 											alt='avatar'
 										/>
 										<div>
-											<div>{user.name}</div>
-											<div>{user.email}</div>
+											<span>{selectedUser.name}</span>
+											<span>{selectedUser.email}</span>
 										</div>
 									</div>
 									<div className='delete-user-button-container'>
 										<button
-											className={
-												user.isAdmin ? 'delete-button' : 'delete-button not'
+											disabled={
+												user.email === 'test@gmail.com' &&
+												'Delete court unavilable on demo'
 											}
-											onClick={() => AdimRole(user)}
+											className={
+												selectedUser.isAdmin
+													? 'delete-button'
+													: 'delete-button not'
+											}
+											onClick={() => AdimRole(selectedUser)}
 										>
-											{user.isAdmin ? 'Remove Admin' : 'Give Admin Role'}
+											{selectedUser.isAdmin
+												? 'Remove Admin'
+												: 'Give Admin Role'}
 										</button>
 										<button
+											disabled={
+												user.email === 'test@gmail.com' &&
+												'Delete court unavilable on demo'
+											}
 											className='delete-button'
-											onClick={() => deleteSelectedUser(user._id)}
+											onClick={() => deleteSelectedUser(selectedUser._id)}
 										>
 											Delete User
 										</button>
@@ -60,7 +76,7 @@ function UsersMakeAdminOrDelete({ getAllUsers, user, setRefresh }) {
 								</div>
 							);
 						})}
-				</div>
+				</section>
 			</div>
 		</div>
 	);

@@ -8,7 +8,7 @@ import logo from '../assets/images/tennis-logo.jpeg';
 function SignIn() {
 	const LOCALHOST_URL = 'http://localhost:5000';
 
-	const { login, addUserToLocalStorage } = useContext(appContext);
+	const { login, addUserToSessionStorage } = useContext(appContext);
 	const navigate = useNavigate();
 	const [btnDisabled, setBtnDisabled] = useState(false);
 	const [loginData, setLoginData] = useState({
@@ -25,10 +25,11 @@ function SignIn() {
 			);
 			const { token, user } = response.data;
 
-			addUserToLocalStorage({ user, token });
+			addUserToSessionStorage({ user, token });
 			login({ user, token });
 			navigate('/');
 		} catch (error) {
+			console.log(error);
 			setBtnDisabled(false);
 			toast.error(error.response.data.Message);
 		}
@@ -50,11 +51,11 @@ function SignIn() {
 		<div className='page-containers'>
 			<div className='login-container'>
 				<img src={logo} alt='tennis-logo' className='logo' />
-				<h1>Sign In to Tennis Pal</h1>
+				<h1>Sign In</h1>
 				<form className='login-form' onSubmit={onSubmit}>
-					<label>Email</label>
+					<label htmlFor='email'>Email</label>
 					<input type='email' id='email' onChange={onChange} />
-					<label>Password</label>
+					<label htmlFor='password'>Password</label>
 					<input type='password' id='password' onChange={onChange} />
 
 					<div className='end-of-form'>
