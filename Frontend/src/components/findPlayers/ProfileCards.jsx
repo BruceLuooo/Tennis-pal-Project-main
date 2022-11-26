@@ -4,7 +4,7 @@ import AppContext from '../../context/appContext';
 import axios from 'axios';
 
 function ProfileCards({ searchedUser }) {
-	const LOCALHOST_URL = 'http://localhost:5000';
+	const LOCALHOST_URL = 'http://localhost:3001';
 	const navigate = useNavigate();
 	const { user } = useContext(AppContext);
 

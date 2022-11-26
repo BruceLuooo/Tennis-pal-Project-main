@@ -11,7 +11,7 @@ function FindPlayersFilter({
 	setNumOfPages,
 	setUsers,
 }) {
-	const LOCALHOST_URL = 'http://localhost:5000';
+	const LOCALHOST_URL = 'http://localhost:3001';
 	const [filter, setFilter] = useState({
 		level: [],
 		locations: [],

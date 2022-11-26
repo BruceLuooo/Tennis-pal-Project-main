@@ -8,7 +8,7 @@ import AddOrDeleteCourts from '../components/adminAccess/AddOrDeleteCourts';
 import UsersMakeAdminOrDelete from '../components/adminAccess/UsersMakeAdminOrDelete';
 
 function Profile() {
-	const LOCALHOST_URL = 'http://localhost:5000';
+	const LOCALHOST_URL = 'http://localhost:3001';
 	const { user, token } = useContext(appContext);
 	const {
 		setUserData,

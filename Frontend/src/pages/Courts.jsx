@@ -4,7 +4,7 @@ import CourtLists from '../components/CourtLists';
 import ScrollPageButtons from '../components/buttons/ScrollPageButtons';
 
 function Courts() {
-	const LOCALHOST_URL = 'http://localhost:5000';
+	const LOCALHOST_URL = 'http://localhost:3001';
 
 	const [loading, setLoading] = useState(true);
 	const [courts, setCourts] = useState([]);

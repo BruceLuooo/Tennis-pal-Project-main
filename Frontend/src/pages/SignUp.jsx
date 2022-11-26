@@ -6,7 +6,7 @@ import logo from '../assets/images/tennis-logo.jpeg';
 import { toast } from 'react-toastify';
 
 function SignUp() {
-	const LOCALHOST_URL = 'http://localhost:5000';
+	const LOCALHOST_URL = 'http://localhost:3001';
 
 	const navigate = useNavigate();
 	const { addUserToSessionStorage, login } = useContext(appContext);
@@ -51,7 +51,7 @@ function SignUp() {
 			);
 		}
 		try {
-			await axios.post('http://localhost:5000/api/users/checkEmail', formData);
+			await axios.post('http://localhost:3001/api/users/checkEmail', formData);
 			setNextPage(true);
 		} catch (error) {
 			toast.error(error.response.data.Message);
@@ -88,7 +88,7 @@ function SignUp() {
 			setBtnDisabled(true);
 
 			const response = await axios.post(
-				'http://localhost:5000/api/users',
+				'http://localhost:3001/api/users',
 				formData,
 			);
 			const { user, token } = response.data;

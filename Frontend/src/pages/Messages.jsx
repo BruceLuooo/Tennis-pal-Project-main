@@ -16,7 +16,7 @@ function Messages() {
 
 	useEffect(() => {
 		axios
-			.post('http://localhost:5000/api/users/getUserById', { id })
+			.post('http://localhost:3001/api/users/getUserById', { id })
 			.then(({ data }) => {
 				setCurrentChat(data);
 			});
@@ -24,14 +24,14 @@ function Messages() {
 
 	useEffect(() => {
 		if (user) {
-			socket.current = io('http://localhost:5000');
+			socket.current = io('http://localhost:3001');
 			socket.current.emit('add-user', user._id);
 		}
 	}, [user]);
 
 	useEffect(() => {
 		axios
-			.post(`http://localhost:5000/api/users/getAllContactedUsers`, {
+			.post(`http://localhost:3001/api/users/getAllContactedUsers`, {
 				user: user._id,
 			})
 			.then(({ data }) => {

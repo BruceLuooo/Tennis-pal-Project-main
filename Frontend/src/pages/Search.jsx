@@ -6,7 +6,7 @@ import ScrollPageButtons from '../components/buttons/ScrollPageButtons';
 import appContext from '../context/appContext';
 
 function Search() {
-	const LOCALHOST_URL = 'http://localhost:5000';
+	const LOCALHOST_URL = 'http://localhost:3001';
 
 	const [users, setUsers] = useState(null);
 	const [locationsLists, setLocationsList] = useState([]);

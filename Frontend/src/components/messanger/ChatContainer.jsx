@@ -13,7 +13,7 @@ function ChatContainer({ currentChat, currentUser, mostRecentChat, socket }) {
 	useEffect(() => {
 		if (currentChat) {
 			axios
-				.post('http://localhost:5000/api/messages/getMessages', {
+				.post('http://localhost:3001/api/messages/getMessages', {
 					from: currentUser._id,
 					to: currentChat._id,
 				})
@@ -22,7 +22,7 @@ function ChatContainer({ currentChat, currentUser, mostRecentChat, socket }) {
 	}, [currentChat]);
 
 	const handleSendMessage = async msg => {
-		await axios.post('http://localhost:5000/api/messages/addMessage', {
+		await axios.post('http://localhost:3001/api/messages/addMessage', {
 			from: currentUser._id,
 			to: currentChat._id,
 			message: msg,

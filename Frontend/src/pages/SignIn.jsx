@@ -6,7 +6,7 @@ import axios from 'axios';
 import logo from '../assets/images/tennis-logo.jpeg';
 
 function SignIn() {
-	const LOCALHOST_URL = 'http://localhost:5000';
+	const LOCALHOST_URL = 'http://localhost:3001';
 
 	const { login, addUserToSessionStorage } = useContext(appContext);
 	const navigate = useNavigate();

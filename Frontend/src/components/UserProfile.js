@@ -5,7 +5,7 @@ import { toast } from 'react-toastify';
 import axios from 'axios';
 
 function UserProfile() {
-	const LOCALHOST_URL = 'http://localhost:5000';
+	const LOCALHOST_URL = 'http://localhost:3001';
 	const {
 		togglePopup,
 		onChange,
@@ -30,7 +30,7 @@ function UserProfile() {
 		}
 		try {
 			const response = await axios.patch(
-				'http://localhost:5000/api/users/updateUser',
+				'http://localhost:3001/api/users/updateUser',
 				updateProfile,
 				{
 					headers: {
