@@ -5,10 +5,13 @@ import axios from 'axios';
 import MessageUsers from '../components/messanger/MessageUsers';
 import ChatContainer from '../components/messanger/ChatContainer';
 import { io } from 'socket.io-client';
+import socketIO from 'socket.io-client';
 
 function Messages() {
 	const { id } = useParams();
-	const socket = useRef();
+	// const socket = useRef();
+	const socket = socketIO.connect('http://localhost:5000');
+
 	const [contacts, setContacts] = useState([]);
 	const [currentChat, setCurrentChat] = useState();
 
@@ -16,7 +19,7 @@ function Messages() {
 
 	useEffect(() => {
 		axios
-			.post('http://localhost:3001/api/users/getUserById', { id })
+			.post('http://localhost:5000/api/users/getUserById', { id })
 			.then(({ data }) => {
 				setCurrentChat(data);
 			});
@@ -24,14 +27,13 @@ function Messages() {
 
 	useEffect(() => {
 		if (user) {
-			socket.current = io('http://localhost:3001');
-			socket.current.emit('add-user', user._id);
+			socket.emit('add-user', user._id);
 		}
 	}, [user]);
 
 	useEffect(() => {
 		axios
-			.post(`http://localhost:3001/api/users/getAllContactedUsers`, {
+			.post(`http://localhost:5000/api/users/getAllContactedUsers`, {
 				user: user._id,
 			})
 			.then(({ data }) => {

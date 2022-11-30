@@ -4,16 +4,16 @@ import AppContext from '../../context/appContext';
 import axios from 'axios';
 
 function ProfileCards({ searchedUser }) {
-	const LOCALHOST_URL = 'http://localhost:3001';
+	const localhostUrl = 'http://localhost:5000';
 	const navigate = useNavigate();
 	const { user } = useContext(AppContext);
 
 	const onClick = async e => {
-		await axios.post(`${LOCALHOST_URL}/api/users/contactUser`, {
+		await axios.post(`${localhostUrl}/api/users/contactUser`, {
 			searchedUserId: searchedUser._id,
 			currentUserId: user._id,
 		});
-		await axios.post(`${LOCALHOST_URL}/api/users/addToContactedUser`, {
+		await axios.post(`${localhostUrl}/api/users/addToContactedUser`, {
 			searchedUserId: searchedUser._id,
 			currentUserId: user._id,
 		});

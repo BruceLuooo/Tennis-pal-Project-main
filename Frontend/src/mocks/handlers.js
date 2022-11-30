@@ -1,7 +1,7 @@
 import { rest } from 'msw';
 
 export const handlers = [
-	rest.post('http://localhost:3001/api/users/login', (req, res, ctx) => {
+	rest.post('http://localhost:5000/api/users/login', (req, res, ctx) => {
 		return res(
 			ctx.json([
 				{
@@ -15,7 +15,7 @@ export const handlers = [
 		);
 	}),
 
-	rest.get(' http://localhost:3001/api/allUsers', (req, res, ctx) => {
+	rest.get(' http://localhost:5000/api/allUsers', (req, res, ctx) => {
 		return res(
 			ctx.json([
 				{ name: 'Kyle', level: 1 },

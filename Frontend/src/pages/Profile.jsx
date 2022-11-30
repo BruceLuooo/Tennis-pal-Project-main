@@ -8,7 +8,7 @@ import AddOrDeleteCourts from '../components/adminAccess/AddOrDeleteCourts';
 import UsersMakeAdminOrDelete from '../components/adminAccess/UsersMakeAdminOrDelete';
 
 function Profile() {
-	const LOCALHOST_URL = 'http://localhost:3001';
+	const localhostUrl = 'http://localhost:5000';
 	const { user, token } = useContext(appContext);
 	const {
 		setUserData,
@@ -25,10 +25,10 @@ function Profile() {
 
 	useEffect(() => {
 		axios
-			.get(`${LOCALHOST_URL}/api/allCourts/list`)
+			.get(`${localhostUrl}/api/allCourts/list`)
 			.then(({ data }) => setCourts(data));
 		axios
-			.get(`${LOCALHOST_URL}/api/allUsers/totalUsers`)
+			.get(`${localhostUrl}/api/allUsers/totalUsers`)
 			.then(({ data }) => setGetAllUsers(data));
 
 		setUserData({

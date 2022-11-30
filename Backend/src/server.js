@@ -1,6 +1,6 @@
 const express = require('express');
 const dotenv = require('dotenv').config();
-const PORT = process.env.PORT || 3001;
+const PORT = process.env.PORT || 5000;
 const connectDB = require('./config/db');
 var cors = require('cors');
 const { handleError } = require('./middleware/errorMiddleware');
@@ -44,6 +44,7 @@ io.on('connection', socket => {
 	global.chatSocket = socket;
 	socket.on('add-user', userId => {
 		onlineUsers.set(userId, socket.id);
+		console.log(onlineUsers.set(userId, socket.id));
 	});
 
 	socket.on('send-msg', data => {

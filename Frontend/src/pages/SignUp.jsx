@@ -6,7 +6,7 @@ import logo from '../assets/images/tennis-logo.jpeg';
 import { toast } from 'react-toastify';
 
 function SignUp() {
-	const LOCALHOST_URL = 'http://localhost:3001';
+	const LOCALHOST_URL = 'http://localhost:5000';
 
 	const navigate = useNavigate();
 	const { addUserToSessionStorage, login } = useContext(appContext);
@@ -24,21 +24,20 @@ function SignUp() {
 	const { name, level, email, password, locations } = formData;
 
 	useEffect(() => {
-		const getData = async () => {
+		const getAllCourtsLocation = async () => {
 			const { data } = await axios.get(`${LOCALHOST_URL}/api/allCourts/list`);
 			setAllLocations(data);
 		};
-		getData();
+		getAllCourtsLocation();
 	}, []);
 
-	const onChange = e => {
+	const updateFormData = e => {
 		setFormData(formData => ({
 			...formData,
 			[e.target.id]: e.target.value,
 		}));
 	};
-
-	const onSubmit = async e => {
+	const onSubmitForm = async e => {
 		e.preventDefault();
 
 		if (!level || !email || !password || !name) {
@@ -51,7 +50,7 @@ function SignUp() {
 			);
 		}
 		try {
-			await axios.post('http://localhost:3001/api/users/checkEmail', formData);
+			await axios.post('http://localhost:5000/api/users/checkEmail', formData);
 			setNextPage(true);
 		} catch (error) {
 			toast.error(error.response.data.Message);
@@ -82,13 +81,12 @@ function SignUp() {
 		}
 		registerUser(formData);
 	};
-
 	const registerUser = async formData => {
 		try {
 			setBtnDisabled(true);
 
 			const response = await axios.post(
-				'http://localhost:3001/api/users',
+				'http://localhost:5000/api/users',
 				formData,
 			);
 			const { user, token } = response.data;
@@ -109,19 +107,34 @@ function SignUp() {
 				<div className='login-container'>
 					<img src={logo} alt='tennis-logo' className='logo' />
 					<h1>Create an account</h1>
-					<form className='login-form' onSubmit={onSubmit}>
+					<form className='login-form' onSubmit={onSubmitForm}>
 						<label>Name</label>
-						<input type='text' id='name' value={name} onChange={onChange} />
+						<input
+							type='text'
+							id='name'
+							value={name}
+							onChange={updateFormData}
+						/>
 						<label>Level ( 1 - 5 )</label>
-						<input type='number' id='level' value={level} onChange={onChange} />
+						<input
+							type='number'
+							id='level'
+							value={level}
+							onChange={updateFormData}
+						/>
 						<label>Email</label>
-						<input type='email' id='email' value={email} onChange={onChange} />
+						<input
+							type='email'
+							id='email'
+							value={email}
+							onChange={updateFormData}
+						/>
 						<label>Password</label>
 						<input
 							type='password'
 							id='password'
 							value={password}
-							onChange={onChange}
+							onChange={updateFormData}
 						/>
 						<div className='end-of-form'>
 							<button

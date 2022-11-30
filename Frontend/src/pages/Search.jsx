@@ -6,19 +6,20 @@ import ScrollPageButtons from '../components/buttons/ScrollPageButtons';
 import appContext from '../context/appContext';
 
 function Search() {
-	const LOCALHOST_URL = 'http://localhost:3001';
+	const localhostUrl = 'http://localhost:5000';
+
+	const playerLevel = [1, 2, 3, 4, 5];
+	const { user } = useContext(appContext);
 
 	const [users, setUsers] = useState(null);
 	const [locationsLists, setLocationsList] = useState([]);
 	const [isLoading, setIsLoading] = useState(true);
 	const [currentPage, setCurrentPage] = useState(1);
 	const [numOfPages, setNumOfPages] = useState(1);
-	const { user } = useContext(appContext);
-	const playerLevel = [1, 2, 3, 4, 5];
 
 	useEffect(() => {
 		axios
-			.get(`${LOCALHOST_URL}/api/allCourts/list`)
+			.get(`${localhostUrl}/api/allCourts/list`)
 			.then(({ data }) => setLocationsList(data));
 	}, []);
 

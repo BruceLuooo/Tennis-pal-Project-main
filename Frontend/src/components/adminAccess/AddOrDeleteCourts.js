@@ -21,7 +21,7 @@ function AddOrDeleteCourts({ courts, setRefresh }) {
 	};
 
 	const submitNewCourt = async () => {
-		if (!newCourt.name || !newCourt.address || !newCourt.amountOfCourts) {
+		if (isFormCompleted(newCourt)) {
 			toast.error('Please fill in all fields');
 		}
 		await addCourts(newCourt);
@@ -33,6 +33,9 @@ function AddOrDeleteCourts({ courts, setRefresh }) {
 			amountOfCourts: 0,
 		});
 		setRefresh([]);
+	};
+	const isFormCompleted = newCourt => {
+		return !newCourt.name || !newCourt.address || !newCourt.amountOfCourts;
 	};
 
 	const deleteCourt = async courtName => {

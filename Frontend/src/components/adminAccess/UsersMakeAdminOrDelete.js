@@ -41,8 +41,8 @@ function UsersMakeAdminOrDelete({ getAllUsers, user, setRefresh }) {
 											alt='avatar'
 										/>
 										<div>
-											<span>{selectedUser.name}</span>
-											<span>{selectedUser.email}</span>
+											<div>{selectedUser.name}</div>
+											<div>{selectedUser.email}</div>
 										</div>
 									</div>
 									<div className='delete-user-button-container'>

@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import { toast } from 'react-toastify';
 import axios from 'axios';
+import useDebounce from '../../hooks/useDebounce';
 
 function FindPlayersFilter({
 	setCurrentPage,
@@ -11,36 +12,36 @@ function FindPlayersFilter({
 	setNumOfPages,
 	setUsers,
 }) {
-	const LOCALHOST_URL = 'http://localhost:3001';
 	const [filter, setFilter] = useState({
 		level: [],
 		locations: [],
 	});
 
 	useEffect(() => {
-		const getAllUsers = async () => {
-			try {
-				const params = new URLSearchParams();
-				filter.level.forEach(level => params.append('level[]', level));
-				filter.locations.forEach(location =>
-					params.append('locations[]', location),
-				);
-				// http://localhost:5000/api/allUsers?level[]=1&level[]=2
-				const { data } = await axios.get(
-					`${LOCALHOST_URL}/api/allUsers?page=${currentPage}`,
-					{ params },
-				);
-				setUsers(data.allUsers);
-				setNumOfPages(data.numOfPages);
-				setIsLoading(false);
-			} catch (error) {
-				toast.error('Could not fetch Listings');
-			}
-		};
 		getAllUsers();
 	}, [filter, currentPage]);
 
-	const updateLevelFilter = async e => {
+	const getAllUsers = async () => {
+		const localhostUrl = 'http://localhost:5000';
+		try {
+			const params = new URLSearchParams();
+			filter.level.forEach(level => params.append('level[]', level));
+			filter.locations.forEach(location =>
+				params.append('locations[]', location),
+			);
+			const { data } = await axios.get(
+				`${localhostUrl}/api/allUsers?page=${currentPage}`,
+				{ params },
+			);
+			setUsers(data.allUsers);
+			setNumOfPages(data.numOfPages);
+			setIsLoading(false);
+		} catch (error) {
+			toast.error('Could not fetch Listings');
+		}
+	};
+
+	const updateLevelFilter = e => {
 		setCurrentPage(1);
 		if (e.target.checked) {
 			setFilter(data => ({
