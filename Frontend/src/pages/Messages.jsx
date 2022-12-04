@@ -4,13 +4,12 @@ import AppContext from '../context/appContext';
 import axios from 'axios';
 import MessageUsers from '../components/messanger/MessageUsers';
 import ChatContainer from '../components/messanger/ChatContainer';
-import { io } from 'socket.io-client';
 import socketIO from 'socket.io-client';
 
 function Messages() {
 	const { id } = useParams();
-	// const socket = useRef();
 	const socket = socketIO.connect('http://localhost:5000');
+	console.log(socket);
 
 	const [contacts, setContacts] = useState([]);
 	const [currentChat, setCurrentChat] = useState();
