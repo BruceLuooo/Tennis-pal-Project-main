@@ -7,9 +7,6 @@
   },
   "main": "src/server.js",
   "scripts": {
-    "build": "cd Frontend && npm run build",
-    "install-client": "cd Frontend && npm install",
-    "heroku-postbuild": "npm run install-client && npm run build",
     "start": "node src/server.js",
     "server": "nodemon src/server.js"
   },

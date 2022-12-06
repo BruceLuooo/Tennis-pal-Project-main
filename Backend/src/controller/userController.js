@@ -116,12 +116,26 @@ const contactUser = async (req, res) => {
 		const searchedUser = await User.findById(searchedUserId);
 		const currentUser = await User.findById(currentUserId);
 
-		if (currentUser) {
-			currentUser.usersContacted.unshift(searchedUser);
-			currentUser.save();
-		}
+		const contactedUser = await currentUser.usersContacted.map(user => {
+			return user.email;
+		});
 
-		res.status(200).json(currentUser);
+		const isAlreadyContacted = contactedUser.find(
+			user => user == searchedUser.email,
+		);
+
+		if (isAlreadyContacted) {
+			res.status(200).json({ Message: 'User already contacted' });
+		} else {
+			currentUser.usersContacted.unshift({
+				_id: searchedUser._id,
+				name: searchedUser.name,
+				avatar: searchedUser.avatar,
+				email: searchedUser.email,
+			});
+			currentUser.save();
+			res.status(200).json({ Message: 'Successfully added contact' });
+		}
 	} catch (error) {
 		res.status(400).json({ Message: 'There is an error' });
 	}
@@ -132,12 +146,26 @@ const addToContactedUser = async (req, res) => {
 		const searchedUser = await User.findById(searchedUserId);
 		const currentUser = await User.findById(currentUserId);
 
-		if (searchedUser) {
-			searchedUser.usersContacted.unshift(currentUser);
-			searchedUser.save();
-		}
+		const contactedUser = await searchedUser.usersContacted.map(user => {
+			return user.email;
+		});
 
-		res.status(200).json(searchedUser);
+		const isAlreadyContacted = contactedUser.find(
+			user => user == currentUser.email,
+		);
+
+		if (isAlreadyContacted) {
+			res.status(200).json({ Message: 'User already contacted' });
+		} else {
+			searchedUser.usersContacted.unshift({
+				_id: currentUser._id,
+				name: currentUser.name,
+				avatar: currentUser.avatar,
+				email: currentUser.email,
+			});
+			searchedUser.save();
+			res.status(200).json({ Message: 'Successfully added contact' });
+		}
 	} catch (error) {
 		res.status(400).json({ Message: 'There is an error' });
 	}
