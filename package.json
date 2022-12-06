@@ -10,7 +10,7 @@
     "start": "node src/server.js",
     "server": "nodemon src/server.js",
     "heroku-postbuild": "npm run install-client && npm run build",
-    "install-client": "cd ../Frontend && npm install"
+    "install-client": "cd Frontend && npm install"
   },
   "keywords": [],
   "author": "",
