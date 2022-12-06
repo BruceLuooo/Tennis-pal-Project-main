@@ -116,26 +116,12 @@ const contactUser = async (req, res) => {
 		const searchedUser = await User.findById(searchedUserId);
 		const currentUser = await User.findById(currentUserId);
 
-		const contactedUser = await currentUser.usersContacted.map(user => {
-			return user.email;
-		});
-
-		const isAlreadyContacted = contactedUser.find(
-			user => user == searchedUser.email,
-		);
-
-		if (isAlreadyContacted) {
-			res.status(200).json({ Message: 'User already contacted' });
-		} else {
-			currentUser.usersContacted.unshift({
-				_id: searchedUser._id,
-				name: searchedUser.name,
-				avatar: searchedUser.avatar,
-				email: searchedUser.email,
-			});
+		if (currentUser) {
+			currentUser.usersContacted.unshift(searchedUser);
 			currentUser.save();
-			res.status(200).json({ Message: 'Successfully added contact' });
 		}
+
+		res.status(200).json(currentUser);
 	} catch (error) {
 		res.status(400).json({ Message: 'There is an error' });
 	}
@@ -146,26 +132,12 @@ const addToContactedUser = async (req, res) => {
 		const searchedUser = await User.findById(searchedUserId);
 		const currentUser = await User.findById(currentUserId);
 
-		const contactedUser = await searchedUser.usersContacted.map(user => {
-			return user.email;
-		});
-
-		const isAlreadyContacted = contactedUser.find(
-			user => user == currentUser.email,
-		);
-
-		if (isAlreadyContacted) {
-			res.status(200).json({ Message: 'User already contacted' });
-		} else {
-			searchedUser.usersContacted.unshift({
-				_id: currentUser._id,
-				name: currentUser.name,
-				avatar: currentUser.avatar,
-				email: currentUser.email,
-			});
+		if (searchedUser) {
+			searchedUser.usersContacted.unshift(currentUser);
 			searchedUser.save();
-			res.status(200).json({ Message: 'Successfully added contact' });
 		}
+
+		res.status(200).json(searchedUser);
 	} catch (error) {
 		res.status(400).json({ Message: 'There is an error' });
 	}
@@ -175,17 +147,6 @@ const getAllContactedUsers = async (req, res) => {
 	const { user } = req.body;
 
 	const currentUser = await User.findById(user);
-
-	currentUser.usersContacted.map(async user => {
-		const currentUser = await User.findById(user._id);
-
-		empty.push({
-			_id: currentUser._id,
-			name: currentUser.name,
-			avatar: currentUser.avatar,
-			email: currentUser.email,
-		});
-	});
 
 	res.json(currentUser);
 };

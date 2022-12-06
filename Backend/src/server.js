@@ -6,7 +6,7 @@ var cors = require('cors');
 const { handleError } = require('./middleware/errorMiddleware');
 const { notFoundMiddleware } = require('./middleware/not-found');
 const socket = require('socket.io');
-const path = require('path');
+// const { auth } = require('./middleware/auth');
 
 const app = express();
 
@@ -15,11 +15,6 @@ connectDB();
 
 //middleware
 app.use(cors());
-
-app.use(express.static(path.resolve(__dirname, './Frontend/build')));
-app.get('*', function (request, response) {
-	response.sendFile(path.resolve(__dirname, './Frontend/build', 'index.html'));
-});
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
@@ -31,6 +26,21 @@ app.use('/api/messages', require('./routes/allMessagesRoutes'));
 
 app.use(handleError);
 app.use(notFoundMiddleware);
+
+app.get('/api/test', (req, res) => {
+	res.send('test');
+});
+
+app.get('*', function (_, res) {
+	res.sendFile(
+		path.join(__dirname, './Frontend/build/index.html'),
+		function (err) {
+			if (err) {
+				res.status(500).send(err);
+			}
+		},
+	);
+});
 
 const server = app.listen(PORT, () =>
 	console.log(`server started on port ${PORT}`),
